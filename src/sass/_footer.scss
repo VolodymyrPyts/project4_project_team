@@ -1,0 +1,27 @@
+.footer {
+    padding-top: 29px;
+    padding-bottom: 29px;
+    background: var(--footer-bg);
+    font-size: 16px;
+    line-height: 1.1875;
+    color: var(--first-text-color);
+}
+
+.footer__list{
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+.footer__item{
+    padding-left: 6px;
+    padding-right: 6px;
+    border-right: 1px solid var(--first-text-color);
+    &:last-child {
+        border-right: none;
+    }
+
+}
+.heart {
+    font-size: 14px;
+   color: var(--active-color);
+}
