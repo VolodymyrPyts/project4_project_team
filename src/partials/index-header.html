@@ -4,8 +4,8 @@
         <ul class="cap">
             <li class="cap__item-logo">
                 <a class="cap__link" href="./index.html"> 
-                    <svg>
-                        <use href="./images/film.svg"></use>
+                    <svg class=“icon icon-film”>
+                        <use href="./images/symbol-defs.svg#icon-film"></use>
                     </svg>
                     <span class="cap__logo-sp">Filmoteka</span>
                 </a>
@@ -20,10 +20,12 @@
             </div>
         </ul>
         <form class="form" action="">
-            <input type="text" placeholder="Movie search">
-            <svg>
-                <use href="./images/Heart.svg"></use>
-            </svg>
+            <div class="form__box">
+                <input type="text" name="searchQuery" placeholder="Movie search">
+                <svg class="icon icon-search">
+                    <use href="./images/symbol-defs.svg#icon-search"></use>
+                </svg>
+            </div>
         </form> 
         <div class="cap__box-error"></div>
     </div>
