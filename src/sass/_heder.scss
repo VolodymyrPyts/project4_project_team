@@ -68,19 +68,25 @@ a {
 }
 form svg {
     @media screen and (min-width: 320px) {
-            transform: translateY(5px) translateX(268px);
-        }
+        transform: translateY(5px) translateX(268px);
+    }
     @media screen and (min-width: 375px) {
-            transform: translateY(5px) translateX(323px);
-        }
+        transform: translateY(5px) translateX(323px);
+    }
     @media screen and (min-width: 425px) {
-            transform: translateY(5px) translateX(370px);
-        }
+        transform: translateY(5px) translateX(370px);
+    }
     @media screen and (min-width: 768px) {
-            transform: translateY(5px) translateX(508px);
-        }
+        transform: translateY(5px) translateX(508px);
+    }
+    @media screen and (min-width: 1024px) {
+        transform: translateY(5px) translateX(636px);
+    }
     @media screen and (min-width: 1200px) {
         transform: translateY(5px) translateX(870px);
+    }
+    @media screen and (min-width: 1560px) {
+        transform: translateY(5px) translateX(1430px);
     }
     position: absolute;
     fill: #fff;
