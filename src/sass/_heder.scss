@@ -1,7 +1,6 @@
 .index__header {
     padding: 40px 20px;
     height: 230px;
-    background: #000;
     background-image: url(../images/Group-tel.jpg);
     background-repeat: no-repeat;
     background-position: center;
@@ -28,43 +27,54 @@
 .library-header {
     padding: 40px 20px;
         height: 230px;
-        background: #000;
-        background-image: url(../images/Group-tel.jpg);
+        background-image: url(../images/group2-tel.jpg);
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
     
         @media screen and (min-resolution: 2dppx) {
-            background-image: url(../images/Group-tel2x.jpg);
+            background-image: url(../images/group-tel@2x.jpg);
         }
     
         @media screen and (min-width: 768px) {
             height: 216px;
             padding: 40px 32px;
-            background-image: url(../images/Group-tabl.jpg);
+            background-image: url(../images/group2-tabl.jpg);
     
             @media screen and (min-resolution: 2dppx) {
-                background-image: url(../images/Group-tabl2x.jpg);
+                background-image: url(../images/group-tabl@2x.jpg);
             }
         }
     
         @media screen and (min-width: 1280px) {
-            background-image: url(../images/Group-desk.jpg);
+            background-image: url(../images/group2-desc.jpg);
     
             @media screen and (min-resolution: 2dppx) {
-                background-image: url(../images/Group-desk2x.jpg);
+                background-image: url(../images/group-desc@2x.jpg);
             }
         }
 }
 a {
     text-decoration: none;
 }
+
 .cap__link svg {
-    width: 20px;
-    height: 20px;
-}
-svg {
     fill: #fff;
+    color: gold;
+    // background: gold;
+    width: 24px;
+    height: 24px;
+
+}
+form svg {
+    position: absolute;
+    fill: #fff;
+    color: gold;
+    // background: gold;
+    width: 12px;
+    height: 12px;
+    margin-right: auto;
+
 }
 .cap {
     display: flex;
@@ -98,12 +108,9 @@ svg {
         margin-top: 41px;
     }
 }
-form svg {
-    width: 25px;
-    height: 25px;
-    
-}
+
 input {
+    position: relative;
     width: 100%;
     border: none;
     border-bottom: 1px solid #fff;
@@ -196,4 +203,21 @@ input::placeholder {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.cap__box-error {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+
+    color: #FF001B;
+    margin-top: 20px;
+    
+    @media screen and (max-width: 320px) {
+        max-width: 300px;
+        margin-top: 16px;
+    }
+        @media screen and (min-width: 768px) {
+            text-align: center;
+        }
 }
