@@ -200,6 +200,7 @@ input::placeholder {
     justify-content: center;
     border-radius: 8px;
     border: 1px solid #fff;
+    cursor: pointer;
 
     @media screen and (min-width: 768px) {
         width: 172px;
