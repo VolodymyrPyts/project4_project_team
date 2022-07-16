@@ -1,6 +1,6 @@
-// import axios from 'axios';
+import axios from 'axios';
 
-class FetchApi {
+export class FetchApi {
   constructor() {
     this.searchQuery = '';
     this.page = 1;
@@ -14,6 +14,14 @@ class FetchApi {
   }
   get pageNumber() {
     return this.page;
+  }
+
+  get currentSearchQuery() {
+    return this.searchQuery;
+  }
+
+  set currentSearchQuery(newSearchQuery) {
+    this.searchQuery = newSearchQuery;
   }
 
   // get genres
