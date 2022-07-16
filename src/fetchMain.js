@@ -1,39 +1,55 @@
-import axios from 'axios';
+// import axios from 'axios';
 
-const KEY_API = 'f70abac86533d424df79b342ee8b9ff4';
-
-export default class FilmsApiService {
+class FetchApi {
   constructor() {
-    this.value = '';
+    this.searchQuery = '';
+    this.page = 1;
+    this.list = 'home';
+    this.baseUrl = 'https://api.themoviedb.org/3/';
+    this.language = 'en-US';
+    this.key = 'f70abac86533d424df79b342ee8b9ff4';
+  }
+  set pageNumber(el) {
+    this.page = el;
+  }
+  get pageNumber() {
+    return this.page;
   }
 
-  fetchCards(page, value) {
-    return axios
-      .get(
-        `https://api.themoviedb.org/3/search/movie?api_key=${KEY_API}&query=${value}&page=${page}`
-      )
-      .then(response => {
-        return response.data;
+  // get genres
+  async fetchGenres() {
+    const url = `${this.baseUrl}genre/movie/list?api_key=${this.key}&language=${this.language}`;
+    try {
+      const response = await fetch(url);
+      const results = await response.json();
+      return results;
+    } catch (error) {
+      error;
+    }
+  }
+
+  // popular movies
+  fetchPopularFilmsByPage() {
+    const url = `${this.baseUrl}movie/popular?api_key=${this.key}&language=${this.language}&page=${this.page}`;
+    return fetch(url)
+      .then(response => response.json())
+      .then(results => {
+        return results;
       });
   }
-  get searchQuery() {
-    return this.value;
-  }
-  set searchQuery(newQuery) {
-    this.value = newQuery;
-  }
-  resetPage() {
-    this.page = page;
-  }
-}
 
-const urlPopalarDay = 'https://api.themoviedb.org/3/trending/movie/day';
-
-// popular today
-export function fetchPopularCollection(page) {
-  return axios
-    .get(`${urlPopalarDay}?api_key=${KEY_API}&page=${page}`)
-    .then(response => {
-      return response.data;
-    });
+  // search movie
+  async fetchSearchFilms() {
+    try {
+      const response = await fetch(
+        `${this.baseUrl}search/movie?api_key=${this.key}&language=${this.language}&page=${this.page}&include_adult=false&query=${this.searchQuery}`
+      );
+      const data = await response.json();
+      const results = await data;
+      console.log(results);
+      return results;
+    } catch (error) {
+      error;
+    }
+  }
 }
