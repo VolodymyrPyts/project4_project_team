@@ -1,5 +1,6 @@
 import './movieModalOpen';
-import { FetchApi } from "./fetchMain";
+import './movieModalClose';
+import { FetchApi } from './fetchMain';
 
 // references declaration:
 const refs = {
@@ -30,5 +31,3 @@ async function onSearchSubmit(event) {
 }
 
 // import './fetchMain';
-
-
