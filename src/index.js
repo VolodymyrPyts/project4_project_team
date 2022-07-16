@@ -1,6 +1,11 @@
 import './movieModalOpen';
+
+import { FetchApi } from "./fetchMain";
+import { fonNightDay } from "./fonNightDay";
+
 import './movieModalClose';
-import { FetchApi } from './fetchMain';
+
+
 
 // references declaration:
 const refs = {
@@ -8,7 +13,7 @@ const refs = {
   searchInput: document.querySelector('input[name=searchQuery]'),
 };
 
-refs.form.addEventListener('submit', onSearchSubmit);
+// refs.form.addEventListener('submit', onSearchSubmit);
 
 const fetchFilms = new FetchApi();
 
@@ -31,3 +36,8 @@ async function onSearchSubmit(event) {
 }
 
 // import './fetchMain';
+
+
+fonNightDay()
+
+
