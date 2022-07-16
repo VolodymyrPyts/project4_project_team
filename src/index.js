@@ -1,5 +1,6 @@
 import './movieModalOpen';
 import { FetchApi } from "./fetchMain";
+import './filmsListMarkup';
 
 // references declaration:
 const refs = {
@@ -28,6 +29,8 @@ async function onSearchSubmit(event) {
 
   event.target.reset();
 }
+
+
 
 // import './fetchMain';
 
