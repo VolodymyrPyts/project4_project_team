@@ -1,1 +1,2 @@
 import './fetchMain';
+import './movieModalOpen';
