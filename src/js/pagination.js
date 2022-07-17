@@ -1,4 +1,4 @@
-import { FetchApi } from './fetchMain';
+import { FetchApi } from './../fetchMain';
 
 const drawSectionRef = document.querySelector('.draw-section');
 const paginationWrapperRef = document.querySelector('.pagination__wrapper');
