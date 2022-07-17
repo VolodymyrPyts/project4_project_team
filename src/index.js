@@ -1,11 +1,9 @@
 import './movieModalOpen';
 
-import { FetchApi } from "./fetchMain";
-import { fonNightDay } from "./fonNightDay";
+import { FetchApi } from './fetchMain';
+import { fonNightDay } from './fonNightDay';
 
 import './movieModalClose';
-
-
 
 // references declaration:
 const refs = {
@@ -37,7 +35,4 @@ async function onSearchSubmit(event) {
 
 // import './fetchMain';
 
-
-fonNightDay()
-
-
+fonNightDay();
