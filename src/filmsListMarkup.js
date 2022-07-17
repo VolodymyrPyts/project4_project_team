@@ -35,9 +35,9 @@ function makeFilmsMarkup(movie) {
             vote_average,
             release_date
         }) => {
-      return `<div class="movie-card">
-        <img class="movie__poster" src=https://image.tmdb.org/t/p/original${poster_path} alt="${
-          title}>
+      return `<div class="movie__card">
+    <img class="movie__poster" src=https://image.tmdb.org/t/p/original${poster_path} alt="${
+          title}">
     <div class="movie__info">
       <p>ID: ${id}</p>
        <p>${title}</p>
