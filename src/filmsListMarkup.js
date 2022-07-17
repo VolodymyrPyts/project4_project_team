@@ -14,7 +14,7 @@ async function fetchTrendMovies() {
     console.error('ERROR');
   }
 }
-const renderPoster = 'https://image.tmdb.org/t/p/w500';
+// const renderPoster = 'https://image.tmdb.org/t/p/w500';
 
 const cards = document.querySelector('.container-movie-card');
 
