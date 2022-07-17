@@ -322,14 +322,14 @@ form svg {
         
     }
 }
-// .cap__item-btn{
-//     position: absolute;
-//     transform: translateY(30px) translateX(160px);
-//     @media screen and (max-width: 767px) {
-//         transform: translateY(40px) translateX(-150px);
-//     }
+.cap__item-btn{
+    position: absolute;
+    transform: translateY(30px) translateX(160px);
+    @media screen and (max-width: 767px) {
+        transform: translateY(40px) translateX(-150px);
+    }
     
-// }
+}
 
 .btn__form-login {
     
