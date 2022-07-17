@@ -32,12 +32,14 @@ function onEscKeyPress(event) {
 
 // Функція відкривання модалки. Якщо модалка відкрита, слухаємо подію
 function onOpenModal() {
+  document.body.style.overflow = 'hidden';
   window.addEventListener('keydown', onEscKeyPress);
   refs.backdrop.classList.remove('is-hidden');
 }
 
 // Коли модалка закривається, знімаємо слухача подій
 function onCloseModal() {
+  document.body.style.overflow = '';
   window.removeEventListener('keydown', onEscKeyPress);
   refs.backdrop.classList.add('is-hidden');
 }
