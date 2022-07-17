@@ -73,14 +73,9 @@ a {
 
 }
 
-form svg {
-    transform: translateY(5px) translateX(-12px);
-    position: absolute;
-    fill: #fff;
-    // background: gold;
-    width: 12px;
-    height: 12px;
-}
+
+
+
 
 .cap {
     display: flex;
@@ -107,7 +102,7 @@ form svg {
 }
 
 .form {
-
+    background-color: rgba(47, 48, 58, 0);
     width: 100%;
     margin-top: 54px;
     display: flex;
@@ -128,7 +123,10 @@ input {
     background-color: rgba(47, 48, 58, 0);
     height: 20px;
     color: #FFFFFF;
-
+    &:hover,
+    &:focus {
+        border-bottom: 1px solid gold;
+    }
 }
 
 input::placeholder {
@@ -254,6 +252,7 @@ input::placeholder {
 }
 .bgr__btn-sun,
 .bgr__btn-moon {
+    cursor: pointer;
     padding: 0;
     background: none;
     margin-right: 30px;
@@ -263,6 +262,13 @@ input::placeholder {
     }
 
 }
+form svg {
+    fill: #fff;
+    width: 12px;
+    height: 12px;
+}
+
+
 .icon {
     fill: #fff;
     width: 20px;
@@ -291,5 +297,21 @@ input::placeholder {
     }
     .icon-moon {
         fill: gold;
+    }
+}
+
+.input__btn {
+    transform: translateY(-4px) translateX(-22px);
+    position: absolute;
+    padding: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        svg {
+            fill: gold;
+        }
+        
     }
 }
