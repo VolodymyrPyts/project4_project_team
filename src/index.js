@@ -2,6 +2,7 @@ import './movieModalOpen';
 
 import { FetchApi } from "./fetchMain";
 import { fonNightDay } from "./fonNightDay";
+import { modalFormLogin } from "./modalFormLogin";
 
 import './movieModalClose';
 
@@ -39,5 +40,5 @@ async function onSearchSubmit(event) {
 
 
 fonNightDay()
-
+modalFormLogin()
 
