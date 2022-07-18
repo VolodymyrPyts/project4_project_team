@@ -5,5 +5,5 @@ const movieCardRef = document.querySelectorAll('.movie__card').forEach(item => {
 
 export function onCardClick() {    
     backdropRef.classList.remove('is-hidden');
-    document.body.style.overflow = "hidden"
+    
 }

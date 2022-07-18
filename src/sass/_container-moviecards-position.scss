@@ -1,4 +1,3 @@
-
 .container-movie-card--background-color {
     background: #FFFFFF;
 
@@ -21,12 +20,12 @@ div {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0;
-    
-    
+
+
 
     @media screen and (min-width: 480px) {
         width: 480px;
-        
+
     }
 
     @media screen and (min-width: 768px) {
@@ -48,9 +47,9 @@ div {
 
     }
 
-        @media screen and (min-width: 1280px) {
-            column-gap: 16px;
-        }
+    @media screen and (min-width: 1280px) {
+        column-gap: 16px;
+    }
 }
 
 .movie__card {

@@ -1,4 +1,6 @@
+
 import axios from 'axios';
+
 
 export class FetchApi {
   constructor() {
@@ -16,34 +18,26 @@ export class FetchApi {
     return this.page;
   }
 
-  get currentSearchQuery() {
-    return this.searchQuery;
-  }
-
-  set currentSearchQuery(newSearchQuery) {
-    this.searchQuery = newSearchQuery;
-  }
-
   // get genres
   async fetchGenres() {
     const url = `${this.baseUrl}genre/movie/list?api_key=${this.key}&language=${this.language}`;
     try {
       const response = await fetch(url);
+
       const results = await response.json();
       return results;
+
     } catch (error) {
       error;
     }
   }
 
   // popular movies
-  fetchPopularFilmsByPage() {
+  async fetchPopularFilmsByPage() {
     const url = `${this.baseUrl}movie/popular?api_key=${this.key}&language=${this.language}&page=${this.page}`;
-    return fetch(url)
-      .then(response => response.json())
-      .then(results => {
-        return results;
-      });
+    const response = await fetch(url);
+
+    return await response.json();
   }
 
   // search movie
@@ -54,7 +48,6 @@ export class FetchApi {
       );
       const data = await response.json();
       const results = await data;
-      console.log(results);
       return results;
     } catch (error) {
       error;
