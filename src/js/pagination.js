@@ -1,6 +1,7 @@
 import { FetchApi } from './../fetchMain';
+import { makemovieForKeywordMarkup } from '../makemovieForKeywordMarkup';
 
-const drawSectionRef = document.querySelector('.draw-section');
+const drawSectionRef = document.querySelector('.container-movie-card');
 const paginationWrapperRef = document.querySelector('.pagination__wrapper');
 const paginationButtonPrevRef = document.querySelector(
   '.pagination__button--prev'
@@ -20,16 +21,27 @@ window.addEventListener('resize', () => {
   paginationButtonsMurkup(fetchApi.pageNumber - 2, fetchApi.pageNumber + 2);
 });
 
-getData();
+initPagination(); //only for test !!! remove on prod
 
-async function getData() {
-  const { total_pages, results } = await fetchApi.fetchPopularFilmsByPage();
-  pageCount = Math.ceil(total_pages / results.length);
+export function initPagination(totalPages) {
+  pageCount = totalPages;
   if (pageCount > MAX_PAGE_COUNT) pageCount = MAX_PAGE_COUNT;
-  // pageCount = 15;
-  drawSectionRef.innerHTML = `Drawing page number ${fetchApi.pageNumber} from ${pageCount}`;
   paginationButtonsMurkup(fetchApi.pageNumber - 2, fetchApi.pageNumber + 2);
   setButtonArrowState();
+}
+
+async function getPopularFilms() {
+  const { total_pages, results } = await fetchApi.fetchPopularFilmsByPage();
+  pageCount = total_pages;
+  if (pageCount > MAX_PAGE_COUNT) pageCount = MAX_PAGE_COUNT;
+  drawSectionRef.innerHTML = makemovieForKeywordMarkup(results);
+}
+
+async function getSearchedFilms() {
+  const { total_pages, results } = await fetchApi.fetchSearchFilms();
+  pageCount = total_pages;
+  if (pageCount > MAX_PAGE_COUNT) pageCount = MAX_PAGE_COUNT;
+  drawSectionRef.innerHTML = makemovieForKeywordMarkup(results);
 }
 
 function paginationButtonsMurkup(left, right) {
@@ -160,4 +172,15 @@ function setButtonArrowState() {
   } else {
     paginationButtonNextRef.removeAttribute('disabled');
   }
+}
+
+async function getData() {
+  if (fetchApi.searchQuery) {
+    await getSearchedFilms();
+  } else {
+    await getPopularFilms();
+  }
+
+  paginationButtonsMurkup(fetchApi.pageNumber - 2, fetchApi.pageNumber + 2);
+  setButtonArrowState();
 }

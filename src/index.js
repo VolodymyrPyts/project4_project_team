@@ -13,7 +13,7 @@ import { modalFormLogin } from './modalFormLogin';
 //   searchInput: document.querySelector('input[name=searchQuery]'),
 // };
 
-// refs.form.addEventListener('submit', onSearchSubmit);
+refs.form.addEventListener('submit', onSearchSubmit);
 
 // const fetchFilms = new FetchApi();
 
@@ -40,4 +40,6 @@ modalFormLogin();
 
 // import './fetchMain';
 
-fonNightDay();
+
+//fonNightDay();
+
