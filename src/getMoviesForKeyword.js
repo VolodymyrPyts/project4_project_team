@@ -1,4 +1,4 @@
-import FetchApi from './fetchMain';
+import { FetchApi } from './fetchMain';
 import Notiflix from 'notiflix';
 import { makemovieForKeywordMarkup } from './makemovieForKeywordMarkup';
 import axios from 'axios';
