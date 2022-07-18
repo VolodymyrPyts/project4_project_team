@@ -362,7 +362,7 @@ form svg {
     position: absolute;
     top: 50%;
     left: 50%;
-    height: auto;
+    height: 300px;
     width: 100%;
 
     @media screen and (min-width: 480px) {
@@ -403,11 +403,26 @@ form svg {
     background: rgba(0, 0, 0, 0.2);
 }
 .modal-login__close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    
     
     svg{
-        fill: #FF001B;
+        fill: currentColor;
         width: 20px;
         height: 20px;
+        &:hover {
+            fill: #FF001B;
+        }
     }
     
 }
