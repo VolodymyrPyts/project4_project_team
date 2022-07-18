@@ -6,54 +6,73 @@
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.2);
+    // transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    //         visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: scroll;
 }
- 
+
 .is-hidden {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    // transform: translate(-50%, -50%) scale(1.2);
 }
 
 .modal {
-    position: absolute;    
+    position: absolute;
     width: calc(100% - 40px);
     min-height: 700px;
-    padding: 20px;
+    padding: 48px 20px;
     background-color: var(--bgBasic);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
     @media screen and (min-width: 768px) {
         width: 704px;
         min-height: 552px;
         padding: 40px 72px 40px 36px;
+        transform: translate(-50%, -50%) scale(1);
+        top: 50%;
+        left: 50%;
     }
 
     @media screen and (min-width: 1280px) {
         width: 806px;
         min-height: 558px;
+        padding: 40px 12px 40px 12px;
     }
 }
 
 .modal__close-btn {
     position: absolute;
-    top: 25px;
-    right: 25px;
+    top: 8px;
+    right: 8px;
     background-color: var(--bgBasic);
-    // border: none;
-    
+    border: none;
+
     display: flex;
     text-align: center;
     justify-content: center;
     color: black;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover,
+    &:focus {
+        color: var(--active-color);
+    }
 }
 
 .modal__close-icon {
-    color: rgba(0, 0, 0, 0.1);
-   
+    fill: currentColor;
+    stroke: currentColor;
+
 }
 
 .modal-wrapper {
     @media screen and (min-width: 768px) {
-            display: flex;
-        }
+        display: flex;
+    }
 }
+
 
 .modal__poster {
     width: 240px;
@@ -61,16 +80,16 @@
     margin-bottom: 20px;
 
     @media screen and (min-width: 768px) {
-            width: 264px;
-            min-height: 374px;
-            margin-right: 68px;
-        }
-    
+        width: 264px;
+        min-height: 374px;
+        margin-right: 68px;
+    }
+
     @media screen and (min-width: 1280px) {
-            width: 375px;
-            min-height: 478px;
-            margin-right: 16px;
-        }
+        width: 375px;
+        min-height: 478px;
+        margin-right: 16px;
+    }
 }
 
 .modal__movie-title {
@@ -83,15 +102,121 @@
 
 .modal__table {
     margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33;
 }
 
 .modal__movie-description {
     font-weight: 500;
     font-size: 12px;
     line-height: 1.67;
-    margin-bottom: 20px;   
+    margin-bottom: 20px;  
+
 }
+
 .modal__about-title {
     margin-bottom: 15px;
 }
 
+.modal__about-text {
+    @media screen and (min-width: 768px) {
+       overflow-y: scroll;
+    max-height: 188px; 
+    }    
+}
+
+.modal__data-title {
+    padding-right: 40px;
+    color: rgba(140, 140, 140, 1);  
+    
+
+    @media screen and (min-width: 1280px) {          
+        padding-right: 84px;
+        }
+}
+
+.rating {
+    background-color: var(--active-color);
+    padding: 2px 10px 2px 10px;
+    border-radius: 5px;
+    color: var(--bgBasic);
+}
+
+.votes {
+    background-color: var(--footer-bg);
+    padding: 2px 10px 2px 10px;
+    border-radius: 5px;
+    color: rgba(0, 0, 0, 1);
+}
+
+.slash {
+    color: rgba(140, 140, 140, 1);
+}
+
+td {
+    padding-bottom: 8px;
+}
+
+.modal__buttons {  
+    display: flex;    
+}
+
+.modal__add-btn {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 110px;
+    height: 44px;
+    padding: 0px 10px;
+
+    background-color: var(--bgBasic);
+    border: 1px solid #000000;
+    border-radius: 5px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33px;
+  
+
+
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:first-child{
+        margin-right: 20px;
+        @media screen and (min-width: 768px) {
+                margin-right: 15px;
+            }
+        }
+
+         @media screen and (min-width: 768px) {
+            min-width: 125px;
+            padding: 0px 8px 0px 8px;
+         }
+    
+         @media screen and (min-width: 1280px) {
+            min-width: 138px; 
+         }
+
+    &:focus,
+    &:hover {
+        background-color: var(--active-color);
+        color: var(--bgBasic);
+        border-color: inherit;
+    }
+    }
+
+.modal__about-text::-webkit-scrollbar{
+    width: 10px;    
+}
+
+.modal__about-text::-webkit-scrollbar-track{
+    background-color: var(--footer-bg);
+
+}
+
+.modal__about-text::-webkit-scrollbar-thumb{
+    background-color: var(--active-color);
+    border-radius: 10px;
+    border: 3px solid var(--footer-bg);
+}

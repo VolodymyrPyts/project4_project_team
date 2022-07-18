@@ -3,6 +3,7 @@ const movieCardRef = document.querySelectorAll('.movie__card').forEach(item => {
     item.addEventListener('click', onCardClick)
 });
 
-function onCardClick() {    
+export function onCardClick() {    
     backdropRef.classList.remove('is-hidden');
+    
 }
