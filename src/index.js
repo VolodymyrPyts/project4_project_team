@@ -1,10 +1,12 @@
 import './movieModalOpen';
 
 import { FetchApi } from "./fetchMain";
+
+import './filmsListMarkup';
+
 import { fonNightDay } from "./fonNightDay";
 
 import './movieModalClose';
-
 
 
 // references declaration:
@@ -34,6 +36,8 @@ async function onSearchSubmit(event) {
 
   event.target.reset();
 }
+
+
 
 // import './fetchMain';
 
