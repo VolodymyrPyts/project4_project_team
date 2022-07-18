@@ -5,6 +5,7 @@ import { FetchApi } from "./fetchMain";
 import './filmsListMarkup';
 
 import { fonNightDay } from "./fonNightDay";
+import { modalFormLogin } from "./modalFormLogin";
 
 import './movieModalClose';
 
@@ -38,7 +39,11 @@ async function onSearchSubmit(event) {
 }
 
 
+fonNightDay()
+modalFormLogin()
+
 
 // import './fetchMain';
+
 
 fonNightDay();

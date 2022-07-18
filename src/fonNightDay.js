@@ -5,6 +5,8 @@ export function fonNightDay() {
     
 
     nightBtn.addEventListener('click', () => {
+        nightBtn.style.display = 'none';
+        daytBtn.style.display = 'block';
         daytBtn.removeAttribute('disabled');
         nightBtn.setAttribute('disabled', true);
 
@@ -15,6 +17,8 @@ export function fonNightDay() {
         localStorage.setItem("state", JSON.stringify(clas));
     });
     daytBtn.addEventListener('click', () => {
+        daytBtn.style.display = 'none';
+        nightBtn.style.display = 'block';
         nightBtn.removeAttribute('disabled');
         daytBtn.setAttribute('disabled', true);
 
@@ -27,5 +31,13 @@ export function fonNightDay() {
     let savedSettings = localStorage.getItem("state");
     let parsedSettings = JSON.parse(savedSettings);
     document.body.classList.add(parsedSettings);
+    if (parsedSettings === 'bgr_night') {
+        nightBtn.style.display = 'none';
+    };
+    if (parsedSettings === 'bgr_day') {
+        
+        daytBtn.style.display = 'none';
+    };
+    
 }
 

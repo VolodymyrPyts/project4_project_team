@@ -66,7 +66,7 @@ a {
 
 .cap__link svg {
     fill: #fff;
-    color: gold;
+    color: #FF001B;
     // background: gold;
     width: 24px;
     height: 24px;
@@ -90,6 +90,9 @@ a {
     line-height: 35px;
     color: #FFFFFF;
     text-transform: none;
+    &:hover {
+        color: #FF001B;
+    }
 
     @media screen and (max-width: 767px) {
         display: none;
@@ -97,6 +100,7 @@ a {
 }
 
 .cap__box {
+    position: relative;
     display: flex;
 
 }
@@ -125,7 +129,7 @@ input {
     color: #FFFFFF;
     &:hover,
     &:focus {
-        border-bottom: 1px solid gold;
+        border-bottom: 1px solid #FF001B;
     }
 }
 
@@ -145,9 +149,12 @@ input::placeholder {
     line-height: 14px;
     text-transform: uppercase;
     color: #FFFFFF;
+    &:hover {
+        color: #FF001B;
+    }
 }
 
-.cap__item:last-child {
+.cap__item:nth-child(4) {
     margin-left: 40px;
 }
 
@@ -253,12 +260,15 @@ input::placeholder {
 .bgr__btn-sun,
 .bgr__btn-moon {
     cursor: pointer;
-    padding: 0;
+    padding: 5px 0  10px 0;
     background: none;
     margin-right: 30px;
     border: none;
     @media screen and (max-width: 425px) {
         margin-right: 15px;
+    }
+    &:hover {
+        fill:#FF001B;
     }
 
 }
@@ -281,11 +291,11 @@ form svg {
 
 .bgr_day {
     background-color: #FFFFFF;
-    .icon-sun {
-        fill: gold;
-    }
+
+   
 }
 .bgr_night {
+
     background-color: #000;
     
     .movie__name {
@@ -294,9 +304,6 @@ form svg {
     .footer {
         background: #400;
         color: #fff;
-    }
-    .icon-moon {
-        fill: gold;
     }
 }
 
@@ -310,8 +317,12 @@ form svg {
 
     &:hover {
         svg {
-            fill: gold;
+            fill: #FF001B;
         }
         
     }
 }
+
+
+
+
