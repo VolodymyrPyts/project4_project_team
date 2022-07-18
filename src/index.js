@@ -23,20 +23,19 @@ const fetchFilms = new FetchApi();
 // function that searching films from the input
 async function onSearchSubmit(event) {
   event.preventDefault();
-  console.log(event.target.elements)
-  // const request = event.target.elements.searchQuery.value;
-  // fetchFilms.currentSearchQuery = request;
-  
 
-  // try {
-  //   const { results } = fetchFilms.fetchSearchFilms();
+  const request = event.target.elements.searchQuery.value;
+  fetchFilms.currentSearchQuery = request;
 
-  //   console.log(results);
-  // } catch (error) {
-  //   console.log(error.message);
-  // }
+  try {
+    const { results } = fetchFilms.fetchSearchFilms();
 
-  // event.target.reset();
+    console.log(results);
+  } catch (error) {
+    console.log(error.message);
+  }
+
+  event.target.reset();
 }
 
 
@@ -45,5 +44,6 @@ modalFormLogin()
 
 
 // import './fetchMain';
+
 
 

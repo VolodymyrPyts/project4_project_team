@@ -10,10 +10,10 @@ refs.openCards.forEach(item => {
 });
 
 // клік по кнопці закрити, закриває модалку
-// refs.closeBtn.addEventListener('click', onCloseModal);
+refs.closeBtn.addEventListener('click', onCloseModal);
 
 // клік по бекдропу, закриває модалку
-// refs.backdrop.addEventListener('click', onBackdropClick);
+refs.backdrop.addEventListener('click', onBackdropClick);
 
 function onBackdropClick(event) {
   if (event.currentTarget === event.target) {
