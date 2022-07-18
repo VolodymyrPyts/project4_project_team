@@ -41,7 +41,4 @@ async function onSearchSubmit(event) {
 
 // import './fetchMain';
 
-
-fonNightDay()
-
-
+fonNightDay();

@@ -53,4 +53,8 @@ export class FetchApi {
       error;
     }
   }
+
+  resetPage() {
+    this.page = 1;
+  }
 }
