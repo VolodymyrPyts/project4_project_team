@@ -2,47 +2,44 @@ import './movieModalOpen';
 import './movieModalClose';
 import './filmsListMarkup';
 import './js/pagination';
-import { FetchApi } from "./fetchMain";
-import { fonNightDay } from "./fonNightDay";
-import { modalFormLogin } from "./modalFormLogin";
-
-
-
+import './getMoviesForKeyword';
+import { FetchApi } from './fetchMain';
+import { fonNightDay } from './fonNightDay';
+import { modalFormLogin } from './modalFormLogin';
 
 // references declaration:
-const refs = {
-  form: document.querySelector('.form'),
-  searchInput: document.querySelector('input[name=searchQuery]'),
-};
+// const refs = {
+//   form: document.querySelector('.form'),
+//   searchInput: document.querySelector('input[name=searchQuery]'),
+// };
 
 refs.form.addEventListener('submit', onSearchSubmit);
 
-const fetchFilms = new FetchApi();
+// const fetchFilms = new FetchApi();
 
-// function that searching films from the input
-async function onSearchSubmit(event) {
-  event.preventDefault();
+// // function that searching films from the input
+// async function onSearchSubmit(event) {
+//   event.preventDefault();
 
-  const request = event.target.elements.searchQuery.value;
-  fetchFilms.currentSearchQuery = request;
+//   const request = event.target.elements.searchQuery.value;
+//   fetchFilms.currentSearchQuery = request;
 
-  try {
-    const { results } = fetchFilms.fetchSearchFilms();
+//   try {
+//     const { results } = fetchFilms.fetchSearchFilms();
 
-    console.log(results);
-  } catch (error) {
-    console.log(error.message);
-  }
+//     console.log(results);
+//   } catch (error) {
+//     console.log(error.message);
+//   }
 
-  event.target.reset();
-}
+//   event.target.reset();
+// }
 
-
-fonNightDay()
-modalFormLogin()
-
+fonNightDay();
+modalFormLogin();
 
 // import './fetchMain';
 
 
+//fonNightDay();
 

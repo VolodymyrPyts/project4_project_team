@@ -1,6 +1,4 @@
-
 import axios from 'axios';
-
 
 export class FetchApi {
   constructor() {
@@ -18,6 +16,14 @@ export class FetchApi {
     return this.page;
   }
 
+  get currentSearchQuery() {
+    return this.searchQuery;
+  }
+
+  set currentSearchQuery(newSearchQuery) {
+    this.searchQuery = newSearchQuery;
+  }
+
   // get genres
   async fetchGenres() {
     const url = `${this.baseUrl}genre/movie/list?api_key=${this.key}&language=${this.language}`;
@@ -26,7 +32,6 @@ export class FetchApi {
 
       const results = await response.json();
       return results;
-
     } catch (error) {
       error;
     }
