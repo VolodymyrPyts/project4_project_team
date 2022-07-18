@@ -260,7 +260,7 @@ input::placeholder {
 .bgr__btn-sun,
 .bgr__btn-moon {
     cursor: pointer;
-    padding: 0;
+    padding: 5px 0  10px 0;
     background: none;
     margin-right: 30px;
     border: none;
@@ -322,14 +322,7 @@ form svg {
         
     }
 }
-.cap__item-btn{
-    position: absolute;
-    transform: translateY(30px) translateX(160px);
-    @media screen and (max-width: 767px) {
-        transform: translateY(40px) translateX(-150px);
-    }
-    
-}
+
 
 .btn__form-login {
     
@@ -417,4 +410,13 @@ form svg {
         height: 20px;
     }
     
+}
+
+.cap__item-bt {
+    position: absolute;
+    transform: translateY(30px) translateX(210px);
+
+    @media screen and (max-width: 767px) {
+        transform: translateY(30px) translateX(180px);
+    }
 }
