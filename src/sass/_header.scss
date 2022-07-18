@@ -260,7 +260,7 @@ input::placeholder {
 .bgr__btn-sun,
 .bgr__btn-moon {
     cursor: pointer;
-    padding: 5px 0  10px 0;
+    padding: 0;
     background: none;
     margin-right: 30px;
     border: none;
@@ -268,9 +268,11 @@ input::placeholder {
         margin-right: 15px;
     }
     &:hover {
-        fill:#FF001B;
+        svg {
+            fill: #FF001B;
+        }
     }
-
+    
 }
 form svg {
     fill: #fff;

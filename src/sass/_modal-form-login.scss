@@ -36,6 +36,7 @@
 }
 
 .modal__login {
+    pointer-events: none;
     background-image: url(../images/group2-tel.jpg);
     background-repeat: no-repeat;
     background-position: center;
@@ -83,7 +84,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.2);
 }
 
 .modal-login__close-btn {
@@ -143,8 +143,8 @@
         line-height: 16px;
         &:hover {
             filter: drop-shadow(0 8px 43px #ff6b0199);
-            background-color: #ff6b01;
-            border-color: #ff6b01;
+            background-color: var(--active-color);
+            border-color: var(--active-color);
         }
     }
 }
@@ -157,7 +157,7 @@
         margin-bottom: 20px;
         height: 30px;
         &:hover {
-            border-color: #FF001B;
+            border-color: var(--active-color);
         }
     }
     .img {
