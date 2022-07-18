@@ -11,6 +11,8 @@
     margin-left: auto;
     margin-right: auto;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .footer__item{
     padding-left: 6px;
@@ -24,4 +26,13 @@
 .heart {
     font-size: 14px;
    color: var(--active-color);
+}
+
+.footer__ModalTeam {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    color: var(--first-text-color);
+    padding: 0;
+    border-bottom: solid 1px var(--first-text-color);
 }
