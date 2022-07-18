@@ -16,26 +16,27 @@ const refs = {
   searchInput: document.querySelector('input[name=searchQuery]'),
 };
 
-// refs.form.addEventListener('submit', onSearchSubmit);
+refs.form.addEventListener('submit', onSearchSubmit);
 
 const fetchFilms = new FetchApi();
 
 // function that searching films from the input
 async function onSearchSubmit(event) {
   event.preventDefault();
+  console.log(event.target.elements)
+  // const request = event.target.elements.searchQuery.value;
+  // fetchFilms.currentSearchQuery = request;
+  
 
-  const request = event.target.elements.searchQuery.value;
-  fetchFilms.currentSearchQuery = request;
+  // try {
+  //   const { results } = fetchFilms.fetchSearchFilms();
 
-  try {
-    const { results } = fetchFilms.fetchSearchFilms();
+  //   console.log(results);
+  // } catch (error) {
+  //   console.log(error.message);
+  // }
 
-    console.log(results);
-  } catch (error) {
-    console.log(error.message);
-  }
-
-  event.target.reset();
+  // event.target.reset();
 }
 
 
@@ -46,4 +47,3 @@ modalFormLogin()
 // import './fetchMain';
 
 
-fonNightDay();
