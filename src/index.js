@@ -1,11 +1,13 @@
 import './movieModalOpen';
 
 import { FetchApi } from "./fetchMain";
+
+import './filmsListMarkup';
+
 import { fonNightDay } from "./fonNightDay";
 import { modalFormLogin } from "./modalFormLogin";
 
 import './movieModalClose';
-
 
 
 // references declaration:
@@ -36,9 +38,12 @@ async function onSearchSubmit(event) {
   event.target.reset();
 }
 
-// import './fetchMain';
-
 
 fonNightDay()
 modalFormLogin()
 
+
+// import './fetchMain';
+
+
+fonNightDay();
