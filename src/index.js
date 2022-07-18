@@ -1,6 +1,8 @@
+import './sass/index.scss';
 import './movieModalOpen';
 import './movieModalClose';
 import './filmsListMarkup';
+import './js/modalTeams';
 import './js/pagination';
 import { FetchApi } from "./fetchMain";
 import { fonNightDay } from "./fonNightDay";
