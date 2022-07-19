@@ -1,8 +1,13 @@
 import { FetchApi } from './fetchMain';
+
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { initPagination } from './js/pagination';
+
 import { addLoader, removeLoader } from './loader.js';
 import { makemovieForKeywordMarkup } from './makemovieForKeywordMarkup';
 import axios from 'axios';
-import Notiflix from 'notiflix';
+//import Notiflix from 'notiflix';
+
 
 const fetchApi = new FetchApi();
 
@@ -19,7 +24,7 @@ async function omFormUserSubmit(event) {
   fetchApi.resetPage();
 
   try {
-    const { results } = await fetchApi.fetchSearchFilms();
+    const { total_pages, results } = await fetchApi.fetchSearchFilms();
 
     if (results.length === 0) {
       removeLoader();
@@ -29,7 +34,11 @@ async function omFormUserSubmit(event) {
     }
     clearResultsContainer();
     appendResultsMarkup(results);
-    removeLoader();
+
+    initPagination(total_pages, fetchApi.searchQuery);
+
+  //  removeLoader();
+
   } catch (error) {
     console.log(error.massage);
   }

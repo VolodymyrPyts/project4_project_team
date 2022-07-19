@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { genres } from './genres.json';
+import { initPagination } from './js/pagination';
 const baseUrl = 'https://api.themoviedb.org/3/';
 const key = 'f70abac86533d424df79b342ee8b9ff4';
 let page = 1;
@@ -19,21 +20,15 @@ const cards = document.querySelector('.container-movie-card');
 
 fetchTrendMovies().then(data => {
   makeFilmsMarkup(data);
-  console.log(data.results);
+  initPagination(data.total_pages);
+  // console.log(data.results);
 });
 
 function makeFilmsMarkup(movie) {
-    const markup = movie.results
-        .map(({
-            title,
-            poster_path,
-            genre_ids,
-            vote_average,
-            release_date
-        }) => {
+  const markup = movie.results
+    .map(({ title, poster_path, genre_ids, vote_average, release_date }) => {
       return `<div class="movie__card">
-    <img class="movie__poster" src=https://image.tmdb.org/t/p/original${poster_path} alt="${
-          title}">
+    <img class="movie__poster" src=https://image.tmdb.org/t/p/original${poster_path} alt="${title}">
     <div class="movie__info">
        <p class="movie__name">${title}</p>
       <div class="movie__data">
@@ -44,7 +39,8 @@ function makeFilmsMarkup(movie) {
        </div>
        </div>
        `;
-    }).join('');
+    })
+    .join('');
 
   cards.insertAdjacentHTML('beforeend', markup);
 }

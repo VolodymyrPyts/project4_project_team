@@ -24,8 +24,14 @@ window.addEventListener('resize', () => {
 
 initPagination(); //only for test !!! remove on prod
 
-export function initPagination(totalPages) {
-  addLoader();
+
+export function initPagination(totalPages, searchQuery = '') {
+  fetchApi.pageNumber = 1;
+  fetchApi.searchQuery = searchQuery;
+
+
+  //addLoader();
+
   pageCount = totalPages;
   if (pageCount > MAX_PAGE_COUNT) pageCount = MAX_PAGE_COUNT;
   paginationButtonsMurkup(fetchApi.pageNumber - 2, fetchApi.pageNumber + 2);
@@ -188,4 +194,12 @@ async function getData() {
 
   paginationButtonsMurkup(fetchApi.pageNumber - 2, fetchApi.pageNumber + 2);
   setButtonArrowState();
+
+  goToTopPage();
 }
+
+function goToTopPage() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
