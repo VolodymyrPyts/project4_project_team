@@ -121,6 +121,7 @@
         transform: translateY(30px) translateX(150px);
     }
 }
+.form__register,
 .form-login {
     padding: 30px 20px;
 }
@@ -166,4 +167,7 @@
 }
 label {
     color: #fff;
+}
+.form__register {
+    display: none;
 }
