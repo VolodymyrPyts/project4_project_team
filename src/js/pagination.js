@@ -1,5 +1,6 @@
 import { FetchApi } from './../fetchMain';
 import { makemovieForKeywordMarkup } from '../makemovieForKeywordMarkup';
+import { addLoader, removeLoader } from '../loader';
 
 const drawSectionRef = document.querySelector('.container-movie-card');
 const paginationWrapperRef = document.querySelector('.pagination__wrapper');
@@ -23,13 +24,19 @@ window.addEventListener('resize', () => {
 
 initPagination(); //only for test !!! remove on prod
 
+
 export function initPagination(totalPages, searchQuery = '') {
   fetchApi.pageNumber = 1;
   fetchApi.searchQuery = searchQuery;
+
+
+  //addLoader();
+
   pageCount = totalPages;
   if (pageCount > MAX_PAGE_COUNT) pageCount = MAX_PAGE_COUNT;
   paginationButtonsMurkup(fetchApi.pageNumber - 2, fetchApi.pageNumber + 2);
   setButtonArrowState();
+  removeLoader();
 }
 
 async function getPopularFilms() {
@@ -177,14 +184,17 @@ function setButtonArrowState() {
 }
 
 async function getData() {
-  if (fetchApi.searchQuery) {
+  addLoader();
+  if(fetchApi.searchQuery) {
     await getSearchedFilms();
   } else {
     await getPopularFilms();
   }
+  removeLoader();
 
   paginationButtonsMurkup(fetchApi.pageNumber - 2, fetchApi.pageNumber + 2);
   setButtonArrowState();
+
   goToTopPage();
 }
 
@@ -192,3 +202,4 @@ function goToTopPage() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 }
+

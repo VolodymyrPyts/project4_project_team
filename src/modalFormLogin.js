@@ -1,29 +1,13 @@
 
 const markAppRegister = `
-<form class="singUp__form-second">
-  <label class="firstName">
-    First Name
-    <input type="text">
-  </label>
-  <label class="secondName">
-    Second Name
-    <input type="text">
-  </label>
-  <label class="img">
-    img
-    <input class="img" type='file'>
-  </label>
-  <div class="form-login__box">
-    <button class="btn__add" type="submit">
-      add
-    </button>
-  </div>
-</form>`;
+`;
 const registerBtn = document.querySelector(".btn__to-register")
-const form = document.querySelector(".form-login")
+const formLogin = document.querySelector(".form-login")
+const formRegister = document.querySelector(".form__register")
 
 registerBtn.addEventListener('click', () => {
-  form.innerHTML = markAppRegister;
+  formLogin.style.display = 'none';
+  formRegister.style.display = 'block';
 })
 export function modalFormLogin()  {
     (() => {
@@ -41,7 +25,9 @@ export function modalFormLogin()  {
     document.body.classList.toggle("bascdrop");
     
   }
-  function toggleModalClose() {
+      function toggleModalClose() {
+    formLogin.style.display = 'block';
+    formRegister.style.display = 'none';
     refs.modal.classList.toggle("is-hidd");
     document.body.classList.toggle("bascdrop");
   }
