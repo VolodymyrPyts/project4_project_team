@@ -8,7 +8,6 @@ import { makemovieForKeywordMarkup } from './makemovieForKeywordMarkup';
 import axios from 'axios';
 //import Notiflix from 'notiflix';
 
-
 const fetchApi = new FetchApi();
 
 const form = document.querySelector('.form');
@@ -37,8 +36,7 @@ async function omFormUserSubmit(event) {
 
     initPagination(total_pages, fetchApi.searchQuery);
 
-  //  removeLoader();
-
+    removeLoader();
   } catch (error) {
     console.log(error.massage);
   }
