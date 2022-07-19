@@ -1,6 +1,4 @@
-
 import axios from 'axios';
-
 
 export class FetchApi {
   constructor() {
@@ -26,7 +24,6 @@ export class FetchApi {
 
       const results = await response.json();
       return results;
-
     } catch (error) {
       error;
     }
@@ -53,6 +50,8 @@ export class FetchApi {
       error;
     }
   }
+
+  
 
   resetPage() {
     this.page = 1;
