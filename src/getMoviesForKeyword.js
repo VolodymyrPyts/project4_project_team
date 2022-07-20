@@ -3,7 +3,7 @@ import { FetchApi } from './fetchMain';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { initPagination } from './js/pagination';
 
-import { addLoader, removeLoader } from './loader.js';
+import { addLoader, removeLoader } from './js/loader';
 import { makemovieForKeywordMarkup } from './makemovieForKeywordMarkup';
 import { modal} from './js/modal'
 import axios from 'axios';
@@ -22,6 +22,9 @@ async function omFormUserSubmit(event) {
   fetchApi.searchQuery = event.currentTarget.elements.searchQuery.value.trim();
   event.currentTarget.reset();
   fetchApi.resetPage();
+  if(fetchApi.searchQuery === '') {
+    return removeLoader();
+  }
 
   try {
     const { total_pages, results } = await fetchApi.fetchSearchFilms();
