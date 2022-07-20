@@ -290,20 +290,20 @@ form svg {
 }
 
 .bgr_day {
-    background-color: #FFFFFF;
+    background-color: var(--bgBasic);
 
    
 }
 .bgr_night {
 
-    background-color: #000;
+    background-color:var(--bgDark);
     
     .movie__name {
-        color: #fff;
+        color:var(--bgBasic);
     }
     .footer {
         background: #400;
-        color: #fff;
+        color: var(--bgBasic);
     }
 }
 
