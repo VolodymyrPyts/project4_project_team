@@ -1,6 +1,6 @@
 import { FetchApi } from './../fetchMain';
 import { makemovieForKeywordMarkup } from '../makemovieForKeywordMarkup';
-import { addLoader, removeLoader } from '../loader';
+import { addLoader, removeLoader } from './loader';
 
 const drawSectionRef = document.querySelector('.container-movie-card');
 const paginationWrapperRef = document.querySelector('.pagination__wrapper');
