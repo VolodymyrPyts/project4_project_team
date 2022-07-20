@@ -1,6 +1,4 @@
 
-const markAppRegister = `
-`;
 const registerBtn = document.querySelector(".btn__to-register")
 const formLogin = document.querySelector(".form-login")
 const formRegister = document.querySelector(".form__register")
@@ -15,6 +13,7 @@ export function modalFormLogin()  {
     openModalBtn: document.querySelector(".btn__form-login"),
     closeModalBtn: document.querySelector(".modal-login__close-btn"),
     modal: document.querySelector(".modal__login"),
+    modalBackdrop: document.querySelector(".bacekdrop_box"),
   };
 
   refs.openModalBtn.addEventListener("click", toggleModal);
@@ -22,14 +21,14 @@ export function modalFormLogin()  {
 
   function toggleModal() {
     refs.modal.classList.toggle("is-hidd");
-    document.body.classList.toggle("bascdrop");
+    refs.modalBackdrop.classList.add("bacekdrop");
     
   }
       function toggleModalClose() {
     formLogin.style.display = 'block';
     formRegister.style.display = 'none';
     refs.modal.classList.toggle("is-hidd");
-    document.body.classList.toggle("bascdrop");
+    refs.modalBackdrop.classList.remove("bacekdrop");
   }
     })();
 };
