@@ -23,14 +23,14 @@
     width: 40px;
     height: 40px;
     background-color: transparent;
-    border: 1px solid #ffffff;
+    border: 1px solid var(--bgBasic);
     border-radius: 5px;
    
     font-family: 'Roboto';
     font-weight: 500;
     font-size: 12px;
     line-height: 1.333;
-    color: #000000;
+    color: var(--btn-text-color);
 
     cursor: pointer;
 
@@ -58,17 +58,9 @@
     }
 
     &.pagination__button:disabled{
-        color: #00000050;
+        background-color:var(--btn-disable-bg-color);
+        color:var(--btn-disable-text-color);
         cursor:default;
     }
-
-
-    // @media screen and (max-width: 767px) {
-    //     &.pagination__button--dots,
-    //     &.pagination__button--first,
-    //     &.pagination__button--last {
-    //         display: none;
-    //     }
-    // }
 
 }

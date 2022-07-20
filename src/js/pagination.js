@@ -1,6 +1,8 @@
 import { FetchApi } from './../fetchMain';
+import { makemovieForKeywordMarkup } from '../makemovieForKeywordMarkup';
+import { addLoader, removeLoader } from './loader';
 
-const drawSectionRef = document.querySelector('.draw-section');
+const drawSectionRef = document.querySelector('.container-movie-card');
 const paginationWrapperRef = document.querySelector('.pagination__wrapper');
 const paginationButtonPrevRef = document.querySelector(
   '.pagination__button--prev'
@@ -10,8 +12,10 @@ const paginationButtonNextRef = document.querySelector(
 );
 
 let pageCount;
+const FILMS_REQUEST_RESULT = 'films-request-result';
 const fetchApi = new FetchApi();
-const MAX_PAGE_COUNT = 500;
+
+// const MAX_PAGE_COUNT = 500; виявилося лише для популярних обмеження
 
 paginationButtonPrevRef.addEventListener('click', onPaginationButtonPrevClick);
 paginationButtonNextRef.addEventListener('click', onPaginationButtonNextClick);
@@ -20,16 +24,27 @@ window.addEventListener('resize', () => {
   paginationButtonsMurkup(fetchApi.pageNumber - 2, fetchApi.pageNumber + 2);
 });
 
-getData();
-
-async function getData() {
-  const { total_pages, results } = await fetchApi.fetchPopularFilmsByPage();
-  pageCount = Math.ceil(total_pages / results.length);
-  if (pageCount > MAX_PAGE_COUNT) pageCount = MAX_PAGE_COUNT;
-  // pageCount = 15;
-  drawSectionRef.innerHTML = `Drawing page number ${fetchApi.pageNumber} from ${pageCount}`;
+export function initPagination(totalPages, searchQuery = '') {
+  fetchApi.pageNumber = 1;
+  fetchApi.searchQuery = searchQuery;
+  pageCount = totalPages;
   paginationButtonsMurkup(fetchApi.pageNumber - 2, fetchApi.pageNumber + 2);
   setButtonArrowState();
+}
+
+async function getTrendingFilms() {
+  const { total_pages, results } =
+    await fetchApi.fetchTrendingWeekFilmsByPage();
+  pageCount = total_pages;
+  localStorage.setItem(FILMS_REQUEST_RESULT, JSON.stringify(results));
+  drawSectionRef.innerHTML = makemovieForKeywordMarkup(results);
+}
+
+async function getSearchedFilms() {
+  const { total_pages, results } = await fetchApi.fetchSearchFilms();
+  pageCount = total_pages;
+  localStorage.setItem(FILMS_REQUEST_RESULT, JSON.stringify(results));
+  drawSectionRef.innerHTML = makemovieForKeywordMarkup(results);
 }
 
 function paginationButtonsMurkup(left, right) {
@@ -160,4 +175,22 @@ function setButtonArrowState() {
   } else {
     paginationButtonNextRef.removeAttribute('disabled');
   }
+}
+
+async function getData() {
+  addLoader();
+  if (fetchApi.searchQuery) {
+    await getSearchedFilms();
+  } else {
+    await getTrendingFilms();
+  }
+  removeLoader();
+
+  paginationButtonsMurkup(fetchApi.pageNumber - 2, fetchApi.pageNumber + 2);
+  setButtonArrowState();
+  goToTopSection();
+}
+
+function goToTopSection() {
+  drawSectionRef.scrollIntoView();
 }

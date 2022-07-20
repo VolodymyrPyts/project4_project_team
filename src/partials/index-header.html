@@ -1,48 +1,43 @@
 <header class="index__header">
-    <div>
+    <div class="">
         <ul class="cap">
             <li class="cap__item-logo">
                 <a class="cap__link" href="./index.html">
-                    <svg class=“icon icon-film”>
+                    <svg class="icon">
                         <use href="./images/symbol-defs.svg#icon-film"></use>
                     </svg>
                     <span class="cap__logo-sp">Filmoteka</span>
                 </a>
             </li>
-            <ul class="cap__box">
-                <li>
-                    <button class="bgr__btn-sun">
-                        <svg class="icon icon-sun">
-                            <use href="./images/symbol-defs.svg#icon-sun"></use>
-                        </svg>
-                    </button>
-                </li>
-                <li>
-                    <button class="bgr__btn-moon">
-                        <svg class="icon icon-moon">
-                            <use href="./images/symbol-defs.svg#icon-moon"></use>
-                        </svg>
-                    </button>
-                </li>
-                <li class="cap__item">
-                    <a class="home-js cap__link active" href="./index.html">Home</a>
-                </li>
-                <li class="cap__item">
-                    <a class="cap__link" href="./myLibrary.html">my library</a>
-                </li>
-                <li class="cap__item-bt">
-                    <button class="btn__form-login">
-                        <svg class="">
-                            <use href="./images/symbol.svg#icon-user-plus"></use>
-                        </svg>
-                    </button>
-                </li>
-            </ul>
+            <li class="cap__item">
+                <button class="bgr__btn-sun">
+                    <svg class="icon icon-sun">
+                        <use href="./images/symbol-defs.svg#icon-sun"></use>
+                    </svg>
+                </button>
+                <button class="bgr__btn-moon">
+                    <svg class="icon icon-moon">
+                        <use href="./images/symbol-defs.svg#icon-moon"></use>
+                    </svg>
+                </button>
+            </li>
+            <li class="cap__item">
+                <a class="home-js cap__link active" href="./index.html">Home</a>
+            </li>
+            <li class="cap__item">
+                <a class="cap__link" href="./myLibrary.html">my library</a>
+                <button class="btn__form-login">
+                    <svg class="">
+                        <use href="./images/symbol.svg#icon-user-plus"></use>
+                    </svg>
+                </button>
+            </li>
         </ul>
-        <form class="form" action="">
+        <form class="form">
             <div class="form__box">
-                <input type="text" placeholder="Movie search">
-                <button class="input__btn" type="button">
+
+                <input type="text" name="searchQuery" placeholder="Movie search">
+                <button class="input__btn" type="submit">
                     <svg>
                         <use href="./images/symbol-defs.svg#icon-search"></use>
                     </svg>
@@ -52,7 +47,7 @@
         <div class="cap__box-error"></div>
     </div>
     <div  class="modal__login">
-        <button type="button" class="modal-login__close-btn">
+        <button type="submit" name="submitBtn" class="modal-login__close-btn">
             <svg>
                 <use href="./images/symbol.svg#icon-x"></use>
             </svg>
@@ -74,6 +69,29 @@
                     <button type="button" class="btn__to-register">Register</button>
                 </div>
             </form>
+        </div>
+        <div class="form__register">
+            <div class="">
+                <form class="singUp__form-second">
+                    <label class="firstName">
+                        First Name
+                        <input type="text">
+                    </label>
+                    <label class="secondName">
+                        Second Name
+                        <input type="text">
+                    </label>
+                    <label class="img">
+                        img
+                        <input class="img" type='file'>
+                    </label>
+                    <div class="form-login__box">
+                        <button class="btn__add" type="submit">
+                            add
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </header>

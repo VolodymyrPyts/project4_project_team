@@ -1,10 +1,12 @@
 import axios from 'axios';
 import { genres } from './genres.json';
+import { initPagination } from './js/pagination';
+import { modal } from './js/modal';
 const baseUrl = 'https://api.themoviedb.org/3/';
 const key = 'f70abac86533d424df79b342ee8b9ff4';
 let page = 1;
 
-async function fetchTrendMovies() {
+export async function fetchTrendMovies() {
   try {
     const { data } = await axios.get(
       `${baseUrl}/trending/movie/week?api_key=${key}&page=${page}`
@@ -19,21 +21,16 @@ const cards = document.querySelector('.container-movie-card');
 
 fetchTrendMovies().then(data => {
   makeFilmsMarkup(data);
-  console.log(data.results);
+  initPagination(data.total_pages);
+  modal();
+  // console.log(data.results);
 });
 
 function makeFilmsMarkup(movie) {
-    const markup = movie.results
-        .map(({
-            title,
-            poster_path,
-            genre_ids,
-            vote_average,
-            release_date
-        }) => {
-      return `<div class="movie__card">
-    <img class="movie__poster" src=https://image.tmdb.org/t/p/original${poster_path} alt="${
-          title}">
+  const markup = movie.results
+    .map(({ id, title, poster_path, genre_ids, vote_average, release_date }) => {
+      return `<div class="movie__card" id=${id}>
+    <img class="movie__poster" src=https://image.tmdb.org/t/p/original${poster_path} alt="${title}">
     <div class="movie__info">
        <p class="movie__name">${title}</p>
       <div class="movie__data">
@@ -44,7 +41,8 @@ function makeFilmsMarkup(movie) {
        </div>
        </div>
        `;
-    }).join('');
+    })
+    .join('');
 
   cards.insertAdjacentHTML('beforeend', markup);
 }

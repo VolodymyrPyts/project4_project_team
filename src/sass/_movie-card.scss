@@ -1,5 +1,6 @@
 .movie__card {
     padding-bottom: 10px;
+    cursor: pointer;
 
     transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
     transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -42,6 +43,8 @@
 }
 
 .movie__info {
+    padding-left: 10px;
+    padding-right: 10px;
     font-size: 12px;
     font-weight: 500;
     line-height: 1.33;
@@ -54,7 +57,7 @@
 }
 
 .movie__name {
-    color: #000000;
+    color: var(--btn-text-color);
     text-transform: uppercase;
     margin-bottom: 4px;
 }
