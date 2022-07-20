@@ -78,6 +78,7 @@ a {
 
 
 .cap {
+    position: relative;
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -99,11 +100,7 @@ a {
     }
 }
 
-.cap__box {
-    position: relative;
-    display: flex;
 
-}
 
 .form {
     background-color: rgba(47, 48, 58, 0);
@@ -128,8 +125,10 @@ input {
     height: 20px;
     color: #FFFFFF;
     &:hover,
-    &:focus {
+    &:focus,
+    &:focus-visible {
         border-bottom: 1px solid #FF001B;
+        color: #FF001B;
     }
 }
 
@@ -262,11 +261,7 @@ input::placeholder {
     cursor: pointer;
     padding: 0;
     background: none;
-    margin-right: 30px;
     border: none;
-    @media screen and (max-width: 425px) {
-        margin-right: 15px;
-    }
     &:hover {
         svg {
             fill: #FF001B;
@@ -274,6 +269,7 @@ input::placeholder {
     }
     
 }
+
 form svg {
     fill: #fff;
     width: 12px;
@@ -291,27 +287,13 @@ form svg {
     }
 }
 
-.bgr_day {
-    background-color: #FFFFFF;
 
-   
-}
 .bgr_night {
-
-    background-color: #000;
-    
-    .movie__name {
-        color: #fff;
-    }
-    .footer {
-        background: #400;
-        color: #fff;
-    }
     .movie__card:hover,
-    .movie__card:focus {
-        transform: scale(1.03);
-        box-shadow: 1px 4px 6px #fff, 0 4px 4px #fff, 0 1px 1px #fff;
-    }
+        .movie__card:focus {
+            transform: scale(1.03);
+            box-shadow: 1px 4px 6px #fff, 0 4px 4px #fff, 0 1px 1px #fff;
+        }
 }
 
 .input__btn {

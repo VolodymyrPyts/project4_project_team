@@ -54,7 +54,7 @@
 }
 
 .movie__name {
-    color: #000000;
+    color: var(--btn-text-color);
     text-transform: uppercase;
     margin-bottom: 4px;
 }
