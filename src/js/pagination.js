@@ -12,8 +12,10 @@ const paginationButtonNextRef = document.querySelector(
 );
 
 let pageCount;
+const FILMS_REQUEST_RESULT = 'films-request-result';
 const fetchApi = new FetchApi();
-const MAX_PAGE_COUNT = 500;
+
+// const MAX_PAGE_COUNT = 500; виявилося лише для популярних обмеження
 
 paginationButtonPrevRef.addEventListener('click', onPaginationButtonPrevClick);
 paginationButtonNextRef.addEventListener('click', onPaginationButtonNextClick);
@@ -26,22 +28,22 @@ export function initPagination(totalPages, searchQuery = '') {
   fetchApi.pageNumber = 1;
   fetchApi.searchQuery = searchQuery;
   pageCount = totalPages;
-  if (pageCount > MAX_PAGE_COUNT) pageCount = MAX_PAGE_COUNT;
   paginationButtonsMurkup(fetchApi.pageNumber - 2, fetchApi.pageNumber + 2);
   setButtonArrowState();
 }
 
-async function getPopularFilms() {
-  const { total_pages, results } = await fetchApi.fetchPopularFilmsByPage();
+async function getTrendingFilms() {
+  const { total_pages, results } =
+    await fetchApi.fetchTrendingWeekFilmsByPage();
   pageCount = total_pages;
-  if (pageCount > MAX_PAGE_COUNT) pageCount = MAX_PAGE_COUNT;
+  localStorage.setItem(FILMS_REQUEST_RESULT, JSON.stringify(results));
   drawSectionRef.innerHTML = makemovieForKeywordMarkup(results);
 }
 
 async function getSearchedFilms() {
   const { total_pages, results } = await fetchApi.fetchSearchFilms();
   pageCount = total_pages;
-  if (pageCount > MAX_PAGE_COUNT) pageCount = MAX_PAGE_COUNT;
+  localStorage.setItem(FILMS_REQUEST_RESULT, JSON.stringify(results));
   drawSectionRef.innerHTML = makemovieForKeywordMarkup(results);
 }
 
@@ -180,7 +182,7 @@ async function getData() {
   if (fetchApi.searchQuery) {
     await getSearchedFilms();
   } else {
-    await getPopularFilms();
+    await getTrendingFilms();
   }
   removeLoader();
 
@@ -188,11 +190,6 @@ async function getData() {
   setButtonArrowState();
   goToTopSection();
 }
-
-// function goToTopPage() {
-//   document.body.scrollTop = 0;
-//   document.documentElement.scrollTop = 0;
-// }
 
 function goToTopSection() {
   drawSectionRef.scrollIntoView();
