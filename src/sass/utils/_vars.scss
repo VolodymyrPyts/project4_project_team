@@ -4,14 +4,15 @@
     --active-color: #FF6B08;
     --first-text-color: #545454;
     --btn-text-color: #000000;
-    --btn-disable-text-color: #00000050;
+    --btn-disable-text-color: #000;
     --btn-disable-bg-color: #f7f7f7;
 
     .bgr_night {
-        --bgBasic: #342E2E;
+        --bgBasic: rgba(0, 0, 0, 0.88);;
         --btn-text-color: #ffffff;
-        --btn-disable-text-color: #00000050;
+        --btn-disable-text-color: #f7f7f7;
         --btn-disable-bg-color: #40000050;
         --footer-bg: #400000;
+        --first-text-color: #ffffff;
     }
 }
