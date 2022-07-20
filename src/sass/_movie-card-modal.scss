@@ -121,7 +121,7 @@
 
 .modal__about-text {
     @media screen and (min-width: 768px) {
-       overflow-y: scroll;
+       overflow-y: auto;
     max-height: 188px; 
     }    
 }

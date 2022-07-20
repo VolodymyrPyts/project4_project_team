@@ -6,7 +6,7 @@ const baseUrl = 'https://api.themoviedb.org/3/';
 const key = 'f70abac86533d424df79b342ee8b9ff4';
 let page = 1;
 
-async function fetchTrendMovies() {
+export async function fetchTrendMovies() {
   try {
     const { data } = await axios.get(
       `${baseUrl}/trending/movie/week?api_key=${key}&page=${page}`
@@ -28,8 +28,8 @@ fetchTrendMovies().then(data => {
 
 function makeFilmsMarkup(movie) {
   const markup = movie.results
-    .map(({ title, poster_path, genre_ids, vote_average, release_date }) => {
-      return `<div class="movie__card">
+    .map(({ id, title, poster_path, genre_ids, vote_average, release_date }) => {
+      return `<div class="movie__card" id=${id}>
     <img class="movie__poster" src=https://image.tmdb.org/t/p/original${poster_path} alt="${title}">
     <div class="movie__info">
        <p class="movie__name">${title}</p>
