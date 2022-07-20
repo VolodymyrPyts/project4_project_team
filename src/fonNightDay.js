@@ -2,17 +2,22 @@ export function fonNightDay() {
 
     const nightBtn = document.querySelector(".bgr__btn-moon");
     const daytBtn = document.querySelector(".bgr__btn-sun");
-    
+    let savedSettings = localStorage.getItem("state");
+    let clas = document.body.className;
+    let parsedSettings = JSON.parse(savedSettings);
+    if (parsedSettings === null) {
+        document.body.classList.add('bgr_day')
+    };
 
     nightBtn.addEventListener('click', () => {
         nightBtn.style.display = 'none';
         daytBtn.style.display = 'block';
         daytBtn.removeAttribute('disabled');
         nightBtn.setAttribute('disabled', true);
-
+        
         document.body.classList.remove('bgr_day');
         document.body.classList.add('bgr_night');
-        const clas = document.body.className;
+        clas = document.body.className;
 
         localStorage.setItem("state", JSON.stringify(clas));
     });
@@ -24,17 +29,22 @@ export function fonNightDay() {
 
         document.body.classList.remove('bgr_night'); 
         document.body.classList.add('bgr_day');
-        const clas = document.body.className;
+        clas = document.body.className;
 
         localStorage.setItem("state", JSON.stringify(clas));
     });
-    let savedSettings = localStorage.getItem("state");
-    let parsedSettings = JSON.parse(savedSettings);
-    document.body.classList.add(parsedSettings);
-    if (parsedSettings === 'bgr_night') {
+    clas = document.body.className;
+    if (parsedSettings === null) {
+        console.log(parsedSettings)
+    } else {
+        document.body.classList.add(parsedSettings);
+    }
+    clas = document.body.className;
+    if (clas === 'bgr_night') {
         nightBtn.style.display = 'none';
     };
-    if (parsedSettings === 'bgr_day') {
+    clas = document.body.className;
+    if (clas === 'bgr_day') {
         
         daytBtn.style.display = 'none';
     };

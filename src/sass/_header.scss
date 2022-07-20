@@ -65,11 +65,13 @@ a {
 }
 
 .cap__link svg {
-    fill: #fff;
-    color: #FF001B;
+    fill: #FF001B;
     // background: gold;
     width: 24px;
     height: 24px;
+    &:hover {
+        fill: #FF001B;
+    }
 
 }
 
@@ -125,8 +127,7 @@ input {
     height: 20px;
     color: #FFFFFF;
     &:hover,
-    &:focus,
-    &:focus-visible {
+    &:focus {
         border-bottom: 1px solid #FF001B;
         color: #FF001B;
     }
