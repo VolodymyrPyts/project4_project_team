@@ -5,6 +5,7 @@ import { initPagination } from './js/pagination';
 
 import { addLoader, removeLoader } from './loader.js';
 import { makemovieForKeywordMarkup } from './makemovieForKeywordMarkup';
+import { modal} from './js/modal'
 import axios from 'axios';
 //import Notiflix from 'notiflix';
 
@@ -35,6 +36,7 @@ async function omFormUserSubmit(event) {
     appendResultsMarkup(results);
 
     initPagination(total_pages, fetchApi.searchQuery);
+    modal();
 
     removeLoader();
   } catch (error) {

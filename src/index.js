@@ -1,5 +1,5 @@
-import './movieModalOpen';
-import './movieModalClose';
+import './js/modal';
+import './js/modal';
 import './filmsListMarkup';
 import './js/pagination';
 import './getMoviesForKeyword';

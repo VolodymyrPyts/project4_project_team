@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { genres } from './genres.json';
 import { initPagination } from './js/pagination';
+import { modal } from './js/modal';
 const baseUrl = 'https://api.themoviedb.org/3/';
 const key = 'f70abac86533d424df79b342ee8b9ff4';
 let page = 1;
@@ -21,6 +22,7 @@ const cards = document.querySelector('.container-movie-card');
 fetchTrendMovies().then(data => {
   makeFilmsMarkup(data);
   initPagination(data.total_pages);
+  modal();
   // console.log(data.results);
 });
 
