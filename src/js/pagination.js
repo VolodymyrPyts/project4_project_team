@@ -1,6 +1,7 @@
 import { FetchApi } from './../fetchMain';
 import { makemovieForKeywordMarkup } from './makemovieForKeywordMarkup';
 import { addLoader, removeLoader } from './loader';
+import { modal } from './modal';
 
 const drawSectionRef = document.querySelector('.container-movie-card');
 const paginationWrapperRef = document.querySelector('.pagination__wrapper');
@@ -38,6 +39,7 @@ async function getTrendingFilms() {
   pageCount = total_pages;
   localStorage.setItem(FILMS_REQUEST_RESULT, JSON.stringify(results));
   drawSectionRef.innerHTML = makemovieForKeywordMarkup(results);
+  
 }
 
 async function getSearchedFilms() {
@@ -185,6 +187,7 @@ async function getData() {
     await getTrendingFilms();
   }
   removeLoader();
+  modal();
 
   paginationButtonsMurkup(fetchApi.pageNumber - 2, fetchApi.pageNumber + 2);
   setButtonArrowState();

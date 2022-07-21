@@ -1,5 +1,5 @@
-import { parsedData } from "./trendMoviesLocalStorage";
-import { genres } from '../genres.json';
+
+// import { genres } from '../genres.json';
 import { getfilmsGenresUl } from '../filmsListMarkup';
 
 export function modal() {
@@ -45,7 +45,8 @@ function onOpenModal(event, id) {
  
 
   let filmData;
-  for (let item of parsedData) {
+
+  for (let item of JSON.parse(localStorage.getItem('films-request-result'))) {
     const ID = currentFilmId;
     if (item.id === ID) {
       
@@ -55,10 +56,7 @@ function onOpenModal(event, id) {
   }
   const { original_title, genre_ids, overview, popularity, poster_path, vote_average, vote_count, release_date } = filmData;
   const filmsGenresList = getfilmsGenresUl(genre_ids).join(', ');
-  console.log(vote_average);
-
-   
-
+  
   const modalMarkup = 
     `<img class="modal__poster" src=https://image.tmdb.org/t/p/original${poster_path} alt="rectangle"/>
             <div class="modal__movie-data">

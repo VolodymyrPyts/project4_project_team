@@ -22,6 +22,7 @@ const cards = document.querySelector('.container-movie-card');
 fetchTrendMovies().then(data => {
   makeFilmsMarkup(data);
   initPagination(data.total_pages);
+  localStorage.setItem('films-request-result', JSON.stringify(data.results));
   modal();
   // console.log(data.results);
 });
