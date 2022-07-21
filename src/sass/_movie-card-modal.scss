@@ -43,27 +43,32 @@
 }
 
 .modal__close-btn {
+    cursor: pointer;
     position: absolute;
-    top: 8px;
-    right: 8px;
-    background-color: var(--bgBasic);
+    top: 10px;
+    right: 10px;
     border: none;
+    padding: 0;
+    border-radius: 50%;
+    background-color: #ffffff;
 
     display: flex;
     text-align: center;
     justify-content: center;
-    color: black;
+    color: btn-text-color;
     transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover,
     &:focus {
         color: var(--active-color);
     }
+
 }
 
 .modal__close-icon {
     fill: currentColor;
     stroke: currentColor;
+    
 
 }
 
@@ -144,7 +149,7 @@
 }
 
 .votes {
-    background-color: var(--footer-bg);
+    background-color: #f7f7f7;
     padding: 2px 10px 2px 10px;
     border-radius: 5px;
     color: rgba(0, 0, 0, 1);
@@ -171,7 +176,7 @@ td {
     height: 44px;
     padding: 0px 10px;
 
-    background-color: var(--bgBasic);
+    background-color: #ffffff;
     border: 1px solid #000000;
     border-radius: 5px;
     font-weight: 500;
