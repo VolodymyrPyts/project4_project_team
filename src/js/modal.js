@@ -95,6 +95,15 @@ function onOpenModal(event, id) {
                     <button type="submit" class="modal__add-btn queue-btn">ADD TO QUEUE</button>
                 </div>`;
   refs.modalWrapper.innerHTML = modalMarkup;
+
+   //Додавання фільмів з модального вікна у локальне сховище
+   const addToWatchedBtn = document.querySelector('#addToWatch');
+
+   addToWatchedBtn.addEventListener('click', addFilm);
+   
+   function addFilm (event) {
+   let storageFilm = localStorage.setItem(`${original_title}`, JSON.stringify(filmData));
+  }
 }
 
 // Коли модалка закривається, знімаємо слухача подій
