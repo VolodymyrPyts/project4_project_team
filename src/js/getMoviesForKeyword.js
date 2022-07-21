@@ -46,6 +46,7 @@ async function omFormUserSubmit(event) {
     refs.boxError.classList.add('is-hidden');
 
     initPagination(total_pages, fetchApi.searchQuery);
+    localStorage.setItem('films-request-result', JSON.stringify(results));
     modal();
 
     removeLoader();

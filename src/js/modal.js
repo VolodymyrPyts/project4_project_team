@@ -1,4 +1,6 @@
-import { parsedData } from "./trendMoviesLocalStorage";
+
+// import { genres } from '../genres.json';
+import { getfilmsGenresUl } from '../filmsListMarkup';
 
 export function modal() {
   const refs = {
@@ -43,7 +45,8 @@ function onOpenModal(event, id) {
  
 
   let filmData;
-  for (let item of parsedData) {
+
+  for (let item of JSON.parse(localStorage.getItem('films-request-result'))) {
     const ID = currentFilmId;
     if (item.id === ID) {
       
@@ -51,23 +54,25 @@ function onOpenModal(event, id) {
       break
     }
   }
-  const { original_title, overview, popularity, poster_path, release_date } = filmData;
-
-  const modalMarkup = `<img class="modal__poster" src=https://image.tmdb.org/t/p/original${poster_path} alt="rectangle"/>
+  const { original_title, genre_ids, overview, popularity, poster_path, vote_average, vote_count, release_date } = filmData;
+  const filmsGenresList = getfilmsGenresUl(genre_ids).join(', ');
+  
+  const modalMarkup = 
+    `<img class="modal__poster" src=https://image.tmdb.org/t/p/original${poster_path} alt="rectangle"/>
             <div class="modal__movie-data">
                 <p class="modal__movie-title">${original_title}</p>
                 <table class="modal__table">
                     <tr>
                         <td class="modal__data-title">Vote / Votes</td>
                         <td class="modal__data-info"> 
-                            <span class="rating">7.3</span>
+                            <span class="rating">${vote_average.toFixed(1)}</span>
                             <span class="slash">/</span>
-                            <span class="votes">1260</span>
+                            <span class="votes">${Math.round(vote_count)}</span>
                         </td>
                     </tr>
                     <tr>
                         <td class="modal__data-title">Popularity</td>
-                        <td class="modal__data-info">${popularity}</td>
+                        <td class="modal__data-info">${Math.round(popularity)}</td>
                     </tr>
                     <tr>
                         <td class="modal__data-title">Original Title</td>
@@ -75,7 +80,7 @@ function onOpenModal(event, id) {
                     </tr>
                     <tr>
                         <td class="modal__data-title">Genre</td>
-                        <td class="modal__data-info">Western</td>
+                        <td class="modal__data-info">${filmsGenresList}</td>
                     </tr>
                 </table>
                 <div class="modal__movie-description">
@@ -88,7 +93,7 @@ function onOpenModal(event, id) {
                         <span class="test">WATCHED</span>
                     </button>
                     <button type="submit" class="modal__add-btn queue-btn">ADD TO QUEUE</button>
-                </div>`
+                </div>`;
   refs.modalWrapper.innerHTML = modalMarkup;
 }
 
