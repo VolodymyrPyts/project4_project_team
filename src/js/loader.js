@@ -4,6 +4,7 @@ function addLoader() {
     Loading.circle({
         svgColor: '#FF001B',
         svgSize: '90px',
+        cssAnimation: true
     });
     document.querySelector('body').style.overflow = 'hidden';
 }
@@ -12,7 +13,7 @@ function removeLoader() {
     setTimeout(() => {
         Loading.remove(); 
         document.querySelector('body').style.overflow = 'visible';   
-    }, 2000);
+    }, 300);
 }
 
 function initialLoader() {
