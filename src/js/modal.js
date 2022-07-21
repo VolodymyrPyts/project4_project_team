@@ -1,4 +1,5 @@
 import { parsedData } from "./trendMoviesLocalStorage";
+import { addFilm } from '../addToWatched';
 
 export function modal() {
   const refs = {
@@ -7,6 +8,7 @@ export function modal() {
     openCards: document.querySelectorAll('.movie__card'),
     modalWrapper: document.querySelector('.modal-wrapper')
   };
+
 
 // клік по карткам, відкриває модалку
 refs.openCards.forEach(item => {
@@ -40,7 +42,7 @@ function onOpenModal(event, id) {
   window.addEventListener('keydown', onEscKeyPress);
   refs.backdrop.classList.remove('is-hidden');
   const currentFilmId = Number(event.currentTarget.id);
- 
+  
 
   let filmData;
   for (let item of parsedData) {
@@ -83,19 +85,33 @@ function onOpenModal(event, id) {
                     <p class="modal__about-text">${overview}</p>
                     </div>
                     <div class="modal__buttons">
-                    <button type="submit" class="modal__add-btn watch-btn">
+                    <button type="submit" id="addToWatch" class="modal__add-btn watch-btn">
                         <span class="test">ADD&nbsp;TO&nbsp;</span>
                         <span class="test">WATCHED</span>
                     </button>
                     <button type="submit" class="modal__add-btn queue-btn">ADD TO QUEUE</button>
-                </div>`
+                </div>`             
   refs.modalWrapper.innerHTML = modalMarkup;
+ 
+
+  //Додавання фільмів з модального вікна у локальне сховище
+   const addToWatchedBtn = document.querySelector('#addToWatch');
+
+   addToWatchedBtn.addEventListener('click', addFilm);
+   
+   function addFilm (event) {
+   let storageFilm = localStorage.setItem(`${original_title}`, JSON.stringify(filmData));
+  }
+  
 }
+
+
 
 // Коли модалка закривається, знімаємо слухача подій
 function onCloseModal() {
   document.body.style.overflow = '';
   window.removeEventListener('keydown', onEscKeyPress);
   refs.backdrop.classList.add('is-hidden');
+  
 }
 }

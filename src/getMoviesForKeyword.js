@@ -57,3 +57,4 @@ function appendResultsMarkup(results) {
 function clearResultsContainer() {
   markupMuvieForKeyword.innerHTML = '';
 }
+
