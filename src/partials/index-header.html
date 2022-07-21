@@ -26,7 +26,10 @@
             </li>
             <li class="cap__item">
                 <a class="cap__link" href="./myLibrary.html">my library</a>
-                <button class="btn__form-login">
+                <a class="logOut__btn hidden">
+                    LogOut
+                </a>
+                <button class="btn__form-login" type="button">
                     <svg class="">
                         <use href="./images/symbol.svg#icon-user-plus"></use>
                     </svg>
@@ -78,15 +81,15 @@
                     <form class="singUp__form-second">
                         <label class="firstName">
                             First Name
-                            <input type="text">
+                            <input type="text" name="firstName">
                         </label>
                         <label class="secondName">
                             Second Name
-                            <input type="text">
+                            <input type="text" name="secondName">
                         </label>
                         <label class="img">
                             img
-                            <input class="img" type='file'>
+                            <input name="image" class="img" type='file'>
                         </label>
                         <div class="form-login__box">
                             <button class="btn__add" type="submit">
