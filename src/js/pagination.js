@@ -1,5 +1,5 @@
 import { FetchApi } from './../fetchMain';
-import { makemovieForKeywordMarkup } from '../makemovieForKeywordMarkup';
+import { makemovieForKeywordMarkup } from './makemovieForKeywordMarkup';
 import { addLoader, removeLoader } from './loader';
 
 const drawSectionRef = document.querySelector('.container-movie-card');

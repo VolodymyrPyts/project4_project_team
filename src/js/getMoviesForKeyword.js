@@ -1,28 +1,34 @@
-import { FetchApi } from './fetchMain';
+import { FetchApi } from '../fetchMain';
 
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { initPagination } from './js/pagination';
+// import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { initPagination } from './pagination';
 
-import { addLoader, removeLoader } from './js/loader';
+import { addLoader, removeLoader } from './loader';
 import { makemovieForKeywordMarkup } from './makemovieForKeywordMarkup';
-import { modal} from './js/modal'
+import { modal } from './modal';
 import axios from 'axios';
 //import Notiflix from 'notiflix';
 
 const fetchApi = new FetchApi();
 
-const form = document.querySelector('.form');
-const markupMuvieForKeyword = document.querySelector('.container-movie-card');
+const refs = {
+  form: document.querySelector('.form'),
+  markupMuvieForKeyword: document.querySelector('.container-movie-card'),
+  boxError: document.querySelector('.cap__box-error'),
+};
 
-form.addEventListener('submit', omFormUserSubmit);
+refs.form.addEventListener('submit', omFormUserSubmit);
 
 async function omFormUserSubmit(event) {
   event.preventDefault();
   addLoader();
   fetchApi.searchQuery = event.currentTarget.elements.searchQuery.value.trim();
+
+  console.log(fetchApi.searchQuery);
   event.currentTarget.reset();
   fetchApi.resetPage();
-  if(fetchApi.searchQuery === '') {
+  if (fetchApi.searchQuery === '') {
+    refs.boxError.classList.remove('is-hidden');
     return removeLoader();
   }
 
@@ -31,12 +37,13 @@ async function omFormUserSubmit(event) {
 
     if (results.length === 0) {
       removeLoader();
-      return Notiflix.Notify.failure(
-        'Sorry, there are no movie matching your search query. Please try again.'
-      );
+      return refs.boxError.classList.remove('is-hidden');
     }
+
     clearResultsContainer();
     appendResultsMarkup(results);
+
+    refs.boxError.classList.add('is-hidden');
 
     initPagination(total_pages, fetchApi.searchQuery);
     modal();
@@ -48,12 +55,12 @@ async function omFormUserSubmit(event) {
 }
 
 function appendResultsMarkup(results) {
-  markupMuvieForKeyword.insertAdjacentHTML(
+  refs.markupMuvieForKeyword.insertAdjacentHTML(
     'beforeend',
     makemovieForKeywordMarkup(results)
   );
 }
 
 function clearResultsContainer() {
-  markupMuvieForKeyword.innerHTML = '';
+  refs.markupMuvieForKeyword.innerHTML = '';
 }
