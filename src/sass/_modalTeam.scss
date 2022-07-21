@@ -1,26 +1,152 @@
-.backdrop { 
-    z-index: 20;
-    position:fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background-color: rgba(0, 0, 0, 0.2);
-
-opacity: 0;
-overflow-y: scroll;
-transform: opacity 250ms cubic-bizier(0.4, 0, 0.2, 1);
-
-}
-
-.backdrop.is-hidden {
-    opacity: 0;
-    pointer-events: none;
-    & .modalTeam {
-        transform: translate((-50%, -50%) scale(0.9));
-    }
-}
-
-.modalTeam {
-display: none;
-}
+      .modalTeam {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        padding: 15px;
+        min-width: 245px;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: rgba(243, 239, 239, 0.9);
+        transform: translate(-50%, -50%);
+        overflow: auto;
+      }
+      .modalTeam__title {
+        font-size: 20px;
+        color: var(--first-text-color);
+        margin: 0 auto 15px;
+        @media screen and (min-width: 768px) {
+          margin: 0 auto 30px;
+          font-size: 28px;
+        }
+      }
+      .modalTeamClose {
+        font-size: 18px;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        width: 30px;
+        border: none;
+        cursor: pointer;
+        background-color: transparent;
+        transition: color 0.5s cubic-bezier(0.8, 0.4, 0.3, 0.9);
+        color: var(--first-text-color);
+      
+        @media screen and (min-width: 768px) {
+          font-size: 24px;
+        }
+        &:focus,
+        &:hover {
+          color: rgb(250 119 12 / 90%);
+        }
+      }
+      
+      .galleryTeams__img {
+        border-radius: 5px;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+        @media screen and (min-width: 768px) {
+          width: 100px;
+          height: 100px;
+        }
+      }
+      .galleryTeams {
+        width: 280px;
+        height: 50%;
+        padding-inline-start: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        margin-left: -15px;
+        margin-top: -15px;
+        @media screen and (min-width: 768px) {
+          width: 680px;
+          margin-left: -30px;
+          margin-top: -50px;
+        }
+        @media screen and (min-width: 1024px) {
+          width: 750px;
+        }
+      }
+      .socialNetworks__link{
+        text-decoration: none;
+      }
+      .teamList {
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        flex-basis: calc(50% - 15px);
+        min-width: 80px;
+        margin-left: 15px;
+        margin-top: 15px;
+        background-color: var(--bgBasic);
+        box-shadow: 0 0 20px hsl(0deg 0% 55% / 50%);
+        @media screen and (min-width: 768px) {
+          margin-left: 30px;
+          margin-top: 30px;
+          flex-basis: calc(33.33% - 30px);
+          min-width: 100px;
+          max-width: 140px;
+        }
+        &:focus,
+        &:hover {
+          transition: 0.5s;
+          box-shadow: 0 0 20px rgb(250 119 12 / 90%);
+        }
+      }
+      .modalTems__name {
+        display: inline-block;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.17;
+        color: var(--active-color);
+        margin-top: 5px;
+      
+        @media screen and (min-width: 768px) {
+          font-weight: 500;
+          font-size: 18px;
+        }
+      }
+      .modalTems__position {
+        display: inline-block;
+        margin-top: 5px;
+        font-weight: 400;
+        line-height: 1.17;
+        margin-bottom: 5px;
+        color: var(--first-text-color);
+        font-size: 14px;
+        @media screen and (min-width: 768px) {
+          margin-top: 10px;
+          margin-bottom: 10px;
+          font-weight: 500;
+          font-size: 16px;
+        }
+      }
+      .socialLink {
+          display: flex;
+          justify-content: center;
+          }
+  
+          .socialLink__icon {
+            margin-left: 15px;
+            fill:  var(--first-text-color);
+  
+            &:first-child {
+              margin-left: 0;
+            }
+          }
+          .modalTems__block {
+            padding-left: 5px;
+            padding-right: 5px;
+          }

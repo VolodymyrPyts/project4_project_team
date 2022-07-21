@@ -290,11 +290,13 @@ form svg {
 
 
 .bgr_night {
+
     .movie__card:hover,
         .movie__card:focus {
             transform: scale(1.03);
             box-shadow: 1px 4px 6px #fff, 0 4px 4px #fff, 0 1px 1px #fff;
         }
+
 }
 
 .input__btn {

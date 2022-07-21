@@ -3,9 +3,11 @@ import './js/modal';
 import './filmsListMarkup';
 import './js/pagination';
 import './getMoviesForKeyword';
+import './js/modalTeams';
 import { fonNightDay } from './fonNightDay';
 import { modalFormLogin } from './modalFormLogin';
 import { initialLoader } from './js/loader';
+
 
 
 fonNightDay();
