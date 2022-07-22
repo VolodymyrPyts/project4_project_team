@@ -59,13 +59,13 @@ function onOpenModal(event, id) {
       break
     }
   }
-  const { original_title, genre_ids, overview, popularity, poster_path, vote_average, vote_count, release_date } = filmData;
+  const { original_title, title, genre_ids, overview, popularity, poster_path, vote_average, vote_count } = filmData;
   const filmsGenresList = getfilmsGenresUl(genre_ids).join(', ');
   
   const modalMarkup = 
     `<img class="modal__poster" src=https://image.tmdb.org/t/p/original${poster_path} alt="rectangle"/>
             <div class="modal__movie-data">
-                <p class="modal__movie-title">${original_title}</p>
+                <p class="modal__movie-title">${title}</p>
                 <table class="modal__table">
                     <tr>
                         <td class="modal__data-title">Vote / Votes</td>
