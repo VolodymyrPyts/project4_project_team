@@ -5,8 +5,8 @@ import './js/pagination';
 import './js/getMoviesForKeyword';
 import './js/modalTeams';
 // import './js/auth';
-import { fonNightDay } from './fonNightDay';
-import { modalFormLogin } from './modalFormLogin';
+import { fonNightDay } from './js/fonNightDay';
+import { modalFormLogin } from './js/modalFormLogin';
 import { initialLoader } from './js/loader';
 
 fonNightDay();

@@ -35,7 +35,6 @@ export function fonNightDay() {
     });
     clas = document.body.className;
     if (parsedSettings === null) {
-        console.log(parsedSettings)
     } else {
         document.body.classList.add(parsedSettings);
     }
