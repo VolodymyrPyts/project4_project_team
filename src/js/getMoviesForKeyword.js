@@ -1,13 +1,11 @@
 import { FetchApi } from '../fetchMain';
 
-// import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { initPagination } from './pagination';
 
 import { addLoader, removeLoader } from './loader';
 import { makemovieForKeywordMarkup } from './makemovieForKeywordMarkup';
 import { modal } from './modal';
 import axios from 'axios';
-//import Notiflix from 'notiflix';
 
 const fetchApi = new FetchApi();
 
@@ -17,6 +15,8 @@ const refs = {
   boxError: document.querySelector('.cap__box-error'),
 };
 
+const cards = document.querySelector('.container-movie-card');
+
 refs.form.addEventListener('submit', omFormUserSubmit);
 
 async function omFormUserSubmit(event) {
@@ -24,7 +24,6 @@ async function omFormUserSubmit(event) {
   addLoader();
   fetchApi.searchQuery = event.currentTarget.elements.searchQuery.value.trim();
 
-  console.log(fetchApi.searchQuery);
   event.currentTarget.reset();
   fetchApi.resetPage();
   if (fetchApi.searchQuery === '') {
