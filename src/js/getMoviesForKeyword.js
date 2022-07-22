@@ -51,7 +51,8 @@ async function omFormUserSubmit(event) {
 
     removeLoader();
   } catch (error) {
-    console.log(error.massage);
+    console.log(error.message);
+    removeLoader();
   }
 }
 
