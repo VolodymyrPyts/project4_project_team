@@ -7,8 +7,11 @@ export function modal() {
     backdrop: document.querySelector('[data-modal]'),
     closeBtn: document.querySelector('[data-modal-close]'),
     openCards: document.querySelectorAll('.movie__card'),
-    modalWrapper: document.querySelector('.modal-wrapper')
+    modalWrapper: document.querySelector('.modal-wrapper'),
   };
+
+  const watchedArray = [];
+  const queuedArray = [];
 
 // клік по карткам, відкриває модалку
 refs.openCards.forEach(item => {
@@ -42,7 +45,9 @@ function onOpenModal(event, id) {
   window.addEventListener('keydown', onEscKeyPress);
   refs.backdrop.classList.remove('is-hidden');
   const currentFilmId = Number(event.currentTarget.id);
- 
+  const movieContainer = document.querySelector('.container-movie-card');
+
+  let watchedBtn;
 
   let filmData;
 
@@ -88,23 +93,35 @@ function onOpenModal(event, id) {
                     <p class="modal__about-text">${overview}</p>
                     </div>
                     <div class="modal__buttons">
-                    <button type="submit" class="modal__add-btn watch-btn">
+                    <button type="submit" class="modal__add-btn watch-btn" id="addToWatch">
                         <span class="test">ADD&nbsp;TO&nbsp;</span>
                         <span class="test">WATCHED</span>
                     </button>
-                    <button type="submit" class="modal__add-btn queue-btn">ADD TO QUEUE</button>
+                    <button type="submit" class="modal__add-btn queue-btn" id="addToQueue">ADD TO QUEUE</button>
                 </div>`;
   refs.modalWrapper.innerHTML = modalMarkup;
 
    //Додавання фільмів з модального вікна у локальне сховище
-   const addToWatchedBtn = document.querySelector('#addToWatch');
 
-   addToWatchedBtn.addEventListener('click', addFilm);
+  const addToWatchedBtn = document.querySelector('#addToWatch');
+  const addToQueueBtn = document.querySelector('#addToQueue');
+
+  addToWatchedBtn.addEventListener('click', addFilmToWatched);
+  addToQueueBtn.addEventListener('click', addFilmToQueue);
    
-   function addFilm (event) {
-   let storageFilm = localStorage.setItem(`${original_title}`, JSON.stringify(filmData));
+  function addFilmToWatched() {
+    watchedArray.push(filmData);
+    console.log(watchedArray);
+    localStorage.setItem("Watched", JSON.stringify(watchedArray));
+  }
+
+  function addFilmToQueue() {
+    queuedArray.push(filmData);
+    console.log(queuedArray);
+    localStorage.setItem("Queued", JSON.stringify(queuedArray));
   }
 }
+
 
 // Коли модалка закривається, знімаємо слухача подій
 function onCloseModal() {
