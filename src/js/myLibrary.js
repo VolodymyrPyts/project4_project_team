@@ -1,3 +1,4 @@
+// import { modal } from './modal';
 import { Notify } from 'notiflix';
 import { genres } from '../genres.json';
 const libWatchedBtn = document.querySelector('#lib__watched-btn');
@@ -45,7 +46,8 @@ function onPageLoad() {
   }
   if (!localStorage.Watched && localStorage.Queued) {
     onQueuedBtnClick();
-  } else {
+  }
+  if (localStorage.Watched && localStorage.Queued) {
     onWatchedBtnClick();
   }
 }
@@ -114,5 +116,3 @@ function getfilmsGenresUl(genreId) {
   }
   return filmsGenres;
 }
-
-
