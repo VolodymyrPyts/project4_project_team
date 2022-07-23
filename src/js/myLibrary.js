@@ -22,6 +22,7 @@ function onWatchedBtnClick() {
     renderWatchedFilmsFromStorage();
     libWatchedBtn.classList.add('active_btn');
     libQueuedBtn.classList.remove('active_btn');
+    modal();
   } else {
     Notify.warning('You have no watched films!');
   }
@@ -33,6 +34,7 @@ function onQueuedBtnClick() {
     renderQueuedFilmsFromStorage();
     libWatchedBtn.classList.remove('active_btn');
     libQueuedBtn.classList.add('active_btn');
+    modal();
   } else {
     Notify.warning('You have no films in your watch queue!');
   }
