@@ -27,7 +27,7 @@ fetchTrendMovies().then(data => {
   // console.log(data.results);
 });
 
-function makeFilmsMarkup(movie) {
+export function makeFilmsMarkup(movie) {
   const markup = movie.results
     .map(
       ({ id, title, poster_path, genre_ids, vote_average, release_date }) => {
