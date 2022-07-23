@@ -180,10 +180,9 @@ td {
 
 .modal__add-btn {
     cursor: pointer;
-    display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 110px;
+    width: 110px;
     height: 44px;
     padding: 0px 10px;
 
@@ -192,10 +191,7 @@ td {
     border-radius: 5px;
     font-weight: 500;
     font-size: 12px;
-    line-height: 1.33px;
-  
-
-
+    
     transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
     &:first-child{
