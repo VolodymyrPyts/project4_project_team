@@ -1,5 +1,4 @@
-// import { genres } from '../genres.json';
-import { getfilmsGenresUl } from '../filmsListMarkup';
+import { genres } from '../genres.json';
 
 export function modal() {
   const refs = {
@@ -71,8 +70,8 @@ export function modal() {
       vote_average,
       vote_count,
     } = filmData;
-    const filmsGenresList = getfilmsGenresUl(genre_ids).join(', ');
-
+    const filmsGenresList = getFullFilmsGenresUl(genre_ids).join(', ');
+  
     const modalMarkup = `<img class="modal__poster" src=https://image.tmdb.org/t/p/original${poster_path} alt="rectangle"/>
             <div class="modal__movie-data">
                 <p class="modal__movie-title">${title}</p>
@@ -211,3 +210,17 @@ export function modal() {
     refs.backdrop.classList.add('is-hidden');
   }
 }
+
+  function getFullFilmsGenresUl(genreId) {
+  let filmsAllGenres = genres.reduce((acc, { id, name }) => {
+    if (genreId.includes(id)) {
+      acc.push(name);
+    }
+    return acc;
+  }, []);
+  return filmsAllGenres
+}
+
+
+
+

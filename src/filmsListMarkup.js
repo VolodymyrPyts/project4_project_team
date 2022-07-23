@@ -35,7 +35,7 @@ export function makeFilmsMarkup(movie) {
         return `<div class="movie__card" id=${id}>
     <img class="movie__poster" src=https://image.tmdb.org/t/p/original${poster_path} alt="${title}">
     <div class="movie__info">
-       <p class="movie__name">${title}</p>
+       <p class="movie__name">${trimMovieTitle(title)}</p>
       <div class="movie__data">
        <span class="movie__genre">${filmsGenresList}</span>
        <span class="movie__year">${release_date.slice(0, 4)}</span>
@@ -63,4 +63,11 @@ export function getfilmsGenresUl(genreId) {
     filmsGenres.push('Other');
   }
   return filmsGenres;
+}
+
+export function trimMovieTitle(movieTitle) {
+  if (movieTitle.length > 30) {
+    return `${movieTitle.substring(0, 30)} <span>...</span>`;
+  }
+return movieTitle
 }

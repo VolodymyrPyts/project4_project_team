@@ -1,4 +1,5 @@
 import { genres } from '../genres.json';
+import { modal } from './modal';
 const libWatchedBtn = document.querySelector('#lib__watched-btn');
 const libQueuedBtn = document.querySelector('#lib__queued-btn');
 const watchedFilms = localStorage.getItem('Watched');
@@ -28,6 +29,7 @@ function onPageLoad() {
     
   }
 }
+
 
 function renderWatchedFilmsFromStorage() {
     const markup = watchedFilmsArray.map(
