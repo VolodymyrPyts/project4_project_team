@@ -42,7 +42,7 @@ function renderWatchedFilmsFromStorage() {
       <div class="movie__data">
        <span class="movie__genre">${filmsGenresList}</span>
        <span class="movie__year">${release_date.slice(0, 4)}</span>
-       <span class="rating">${vote_average.toFixed(1)}</span>
+       <span class="movie__rating">${vote_average.toFixed(1)}</span>
        </div>
        </div>
        </div>
