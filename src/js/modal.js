@@ -1,4 +1,5 @@
 import { genres } from '../genres.json';
+import { cards, renderWatchedFilmsFromStorage, renderQueuedFilmsFromStorage } from './myLibrary';
 
 export function modal() {
   const refs = {
@@ -133,6 +134,8 @@ export function modal() {
     function watchedFilmHandler() {
       if (isFilmInWatched()) {
         removeFilmFromWatched();
+        document.location.reload();
+        renderWatchedFilmsFromStorage();
       } else {
         addFilmToWatched();
       }
@@ -141,6 +144,8 @@ export function modal() {
     function queueFilmHandler() {
       if (isFilmInQueue()) {
         removeFilmFromQueue();
+        document.location.reload();
+        renderQueuedFilmsFromStorage();
       } else {
         addFilmToQueue();
       }
