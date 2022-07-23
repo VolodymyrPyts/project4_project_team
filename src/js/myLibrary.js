@@ -1,3 +1,5 @@
+// import { modal } from './modal';
+import { Notify } from 'notiflix';
 import { genres } from '../genres.json';
 import { modal } from './modal';
 const libWatchedBtn = document.querySelector('#lib__watched-btn');
@@ -15,27 +17,54 @@ libWatchedBtn.addEventListener('click', onWatchedBtnClick);
 libQueuedBtn.addEventListener('click', onQueuedBtnClick);
 
 function onWatchedBtnClick() {
-  cards.innerHTML = '';
-  renderWatchedFilmsFromStorage();
-}
-
-function onQueuedBtnClick() {
-  cards.innerHTML = '';
-  renderQueuedFilmsFromStorage();
-}
-
-function onPageLoad() {
   if (localStorage.Watched) {
-    
+    cards.innerHTML = '';
+    renderWatchedFilmsFromStorage();
+    libWatchedBtn.classList.add('active_btn');
+    libQueuedBtn.classList.remove('active_btn');
+  } else {
+    Notify.warning('You have no watched films!');
   }
 }
 
+function onQueuedBtnClick() {
+  if (localStorage.Queued) {
+    cards.innerHTML = '';
+    renderQueuedFilmsFromStorage();
+    libWatchedBtn.classList.remove('active_btn');
+    libQueuedBtn.classList.add('active_btn');
+  } else {
+    Notify.warning('You have no films in your watch queue!');
+  }
+}
+
+function onPageLoad() {
+  if (!localStorage.Watched && !localStorage.Queued) {
+    renderEmptyLibrary();
+  }
+  if (localStorage.Watched && !localStorage.Queued) {
+    onWatchedBtnClick();
+  }
+  if (!localStorage.Watched && localStorage.Queued) {
+    onQueuedBtnClick();
+  }
+  if (localStorage.Watched && localStorage.Queued) {
+    onWatchedBtnClick();
+  }
+}
+
+function renderEmptyLibrary() {
+  const emptyLibMarkup = `
+    <p class="lib__empty-placeholder">Oops! There is no films here yet:-(</p>
+  `;
+  cards.insertAdjacentHTML('beforeend', emptyLibMarkup);
+}
 
 function renderWatchedFilmsFromStorage() {
-    const markup = watchedFilmsArray.map(
-      ({ id, title, poster_path, genre_ids, vote_average, release_date }) => {
-        const filmsGenresList = getfilmsGenresUl(genre_ids).join(', ');
-        return `<div class="movie__card" id=${id}>
+  const markup = watchedFilmsArray.map(
+    ({ id, title, poster_path, genre_ids, vote_average, release_date }) => {
+      const filmsGenresList = getfilmsGenresUl(genre_ids).join(', ');
+      return `<div class="movie__card" id=${id}>
     <img class="movie__poster" src=https://image.tmdb.org/t/p/original${poster_path} alt="${title}">
     <div class="movie__info">
        <p class="movie__name">${title}</p>
@@ -47,17 +76,17 @@ function renderWatchedFilmsFromStorage() {
        </div>
        </div>
        `;
-      }
-    )
-      .join('');
-    cards.insertAdjacentHTML('beforeend', markup);
+    }
+  )
+    .join('');
+  cards.insertAdjacentHTML('beforeend', markup);
 }
 
 function renderQueuedFilmsFromStorage() {
-    const markup = queuedFilmsArray.map(
-      ({ id, title, poster_path, genre_ids, vote_average, release_date }) => {
-        const filmsGenresList = getfilmsGenresUl(genre_ids).join(', ');
-        return `<div class="movie__card" id=${id}>
+  const markup = queuedFilmsArray.map(
+    ({ id, title, poster_path, genre_ids, vote_average, release_date }) => {
+      const filmsGenresList = getfilmsGenresUl(genre_ids).join(', ');
+      return `<div class="movie__card" id=${id}>
     <img class="movie__poster" src=https://image.tmdb.org/t/p/original${poster_path} alt="${title}">
     <div class="movie__info">
        <p class="movie__name">${title}</p>
@@ -69,10 +98,10 @@ function renderQueuedFilmsFromStorage() {
        </div>
        </div>
        `;
-      }
-    )
-      .join('');
-    cards.insertAdjacentHTML('beforeend', markup);
+    }
+  )
+    .join('');
+  cards.insertAdjacentHTML('beforeend', markup);
 }
 
 function getfilmsGenresUl(genreId) {
@@ -88,5 +117,3 @@ function getfilmsGenresUl(genreId) {
   }
   return filmsGenres;
 }
-
-
