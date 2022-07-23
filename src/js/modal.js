@@ -50,8 +50,6 @@ export function modal() {
     const currentFilmId = Number(event.currentTarget.id);
     const movieContainer = document.querySelector('.container-movie-card');
 
-    let watchedBtn;
-
     let filmData;
 
     for (let item of JSON.parse(localStorage.getItem('films-request-result'))) {
