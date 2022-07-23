@@ -40,6 +40,30 @@
         }
     }
 }
+.btn__form-login-check {
+    cursor: pointer;
+    fill: green;
+    border: 2px solid green;
+    padding: 0;
+    margin-left: auto;
+    margin-top: 10px;
+    background: #000;
+    border-radius: 40px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+        width: 20px;
+        height: 20px;
+        
+        @media screen and (max-width: 767px) {
+            width: 15px;
+            height: 15px;
+        }
+    }
+}
 
 .modal__login {
     pointer-events: none;
