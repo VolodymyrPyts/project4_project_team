@@ -81,7 +81,7 @@ export function renderWatchedFilmsFromStorage() {
     }
   )
     .join('');
-  cards.insertAdjacentHTML('beforeend', markup);
+  cards.innerHTML = markup;
 }
 
 export function renderQueuedFilmsFromStorage() {
@@ -103,7 +103,7 @@ export function renderQueuedFilmsFromStorage() {
     }
   )
     .join('');
-  cards.insertAdjacentHTML('beforeend', markup);
+  cards.innerHTML = markup;
 }
 
 function getfilmsGenresUl(genreId) {
