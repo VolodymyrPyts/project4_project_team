@@ -1,4 +1,5 @@
 import { getfilmsGenresUl } from '../filmsListMarkup';
+import { trimMovieTitle } from '../filmsListMarkup';
 
 export const makemovieForKeywordMarkup = results => {
   return results
@@ -8,11 +9,11 @@ export const makemovieForKeywordMarkup = results => {
         return `<div class="movie__card" id=${id}>
     <img class="movie__poster" src=https://image.tmdb.org/t/p/original${poster_path} alt="${title}">
     <div class="movie__info">
-       <p class="movie__name">${title}</p>
+       <p class="movie__name">${trimMovieTitle(title)}</p>
       <div class="movie__data">
        <span class="movie__genre">${filmsGenresList}</span>
        <span class="movie__year">${release_date.slice(0, 4)}</span>
-       <span class="rating">${vote_average.toFixed(1)}</span>
+       <span class="movie__rating">${vote_average.toFixed(1)}</span>
        </div>
        </div>
        </div>
