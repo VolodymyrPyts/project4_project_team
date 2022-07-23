@@ -51,7 +51,9 @@ export function modal() {
 
     let filmData;
 
-    for (let item of JSON.parse(localStorage.getItem('films-request-result'))) {
+    const filmsArray = JSON.parse(localStorage.getItem('films-request-result')).concat(JSON.parse(localStorage.getItem('Watched')), JSON.parse(localStorage.getItem('Queued')));
+
+    for (let item of filmsArray) {
       const ID = currentFilmId;
       if (item.id === ID) {
         filmData = item;
