@@ -11,62 +11,69 @@ export const cards = document.querySelector('.container-movie-card');
 const watchedFilmsArray = JSON.parse(watchedFilms);
 const queuedFilmsArray = JSON.parse(queuedFilms);
 
-
 window.addEventListener('DOMContentLoaded', onPageLoad);
 libWatchedBtn.addEventListener('click', onWatchedBtnClick);
 libQueuedBtn.addEventListener('click', onQueuedBtnClick);
 
+function isLibreryNotEmpty(librery) {
+  if (
+    localStorage.getItem(librery) &&
+    JSON.parse(localStorage.getItem(librery)).length > 0
+  )
+    return true;
+}
+
 function onWatchedBtnClick() {
-  if (localStorage.Watched) {
+  if (isLibreryNotEmpty('Watched')) {
     cards.innerHTML = '';
     renderWatchedFilmsFromStorage();
     libWatchedBtn.classList.add('active_btn');
     libQueuedBtn.classList.remove('active_btn');
     modal();
   } else {
+    renderEmptyLibrary();
     Notify.warning('You have no watched films!');
   }
 }
 
 function onQueuedBtnClick() {
-  if (localStorage.Queued) {
+  if (isLibreryNotEmpty('Queued')) {
     cards.innerHTML = '';
     renderQueuedFilmsFromStorage();
     libWatchedBtn.classList.remove('active_btn');
     libQueuedBtn.classList.add('active_btn');
     modal();
   } else {
+    renderEmptyLibrary();
     Notify.warning('You have no films in your watch queue!');
   }
 }
 
 function onPageLoad() {
-  if (!localStorage.Watched && !localStorage.Queued) {
-    renderEmptyLibrary();
+  if (isLibreryNotEmpty('Watched')) {
+    return onWatchedBtnClick();
   }
-  if (localStorage.Watched && !localStorage.Queued) {
-    onWatchedBtnClick();
+
+  if (isLibreryNotEmpty('Queued')) {
+    return onQueuedBtnClick();
   }
-  if (!localStorage.Watched && localStorage.Queued) {
-    onQueuedBtnClick();
-  }
-  if (localStorage.Watched && localStorage.Queued) {
-    onWatchedBtnClick();
-  }
+
+  return renderEmptyLibrary();
 }
 
 function renderEmptyLibrary() {
   const emptyLibMarkup = `
     <p class="lib__empty-placeholder">Oops! There is no films here yet:-(</p>
   `;
-  cards.insertAdjacentHTML('beforeend', emptyLibMarkup);
+  cards.innerHTML = emptyLibMarkup;
 }
 
 export function renderWatchedFilmsFromStorage() {
-  const markup = watchedFilmsArray.map(
-    ({ id, title, poster_path, genre_ids, vote_average, release_date }) => {
-      const filmsGenresList = getfilmsGenresUl(genre_ids).join(', ');
-      return `<div class="movie__card" id=${id}>
+  const markup = watchedFilmsArray
+    .map(
+      ({ id, title, poster_path, genre_ids, vote_average, release_date }) => {
+        const filmsGenresList = getfilmsGenresUl(genre_ids).join(', ');
+        return `<div class="movie__card" id=${id}>
     <img class="movie__poster" src=https://image.tmdb.org/t/p/original${poster_path} alt="${title}">
     <div class="movie__info">
        <p class="movie__name">${title}</p>
@@ -78,17 +85,18 @@ export function renderWatchedFilmsFromStorage() {
        </div>
        </div>
        `;
-    }
-  )
+      }
+    )
     .join('');
   cards.innerHTML = markup;
 }
 
 export function renderQueuedFilmsFromStorage() {
-  const markup = queuedFilmsArray.map(
-    ({ id, title, poster_path, genre_ids, vote_average, release_date }) => {
-      const filmsGenresList = getfilmsGenresUl(genre_ids).join(', ');
-      return `<div class="movie__card" id=${id}>
+  const markup = queuedFilmsArray
+    .map(
+      ({ id, title, poster_path, genre_ids, vote_average, release_date }) => {
+        const filmsGenresList = getfilmsGenresUl(genre_ids).join(', ');
+        return `<div class="movie__card" id=${id}>
     <img class="movie__poster" src=https://image.tmdb.org/t/p/original${poster_path} alt="${title}">
     <div class="movie__info">
        <p class="movie__name">${title}</p>
@@ -100,8 +108,8 @@ export function renderQueuedFilmsFromStorage() {
        </div>
        </div>
        `;
-    }
-  )
+      }
+    )
     .join('');
   cards.innerHTML = markup;
 }
