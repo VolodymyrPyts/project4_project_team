@@ -1,8 +1,5 @@
 import { genres } from '../genres.json';
-import {
-  renderWatchedFilmsFromStorage,
-  renderQueuedFilmsFromStorage,
-} from './myLibrary';
+import { renderFilmsFromStorage } from './myLibrary';
 
 export function modal(isItLibrery = false) {
   const refs = {
@@ -81,7 +78,7 @@ export function modal(isItLibrery = false) {
     } = filmData;
     const filmsGenresList = getFullFilmsGenresUl(genre_ids).join(', ');
 
-    const modalMarkup = `<img class="modal__poster" src=https://image.tmdb.org/t/p/original${poster_path} alt="rectangle"/>
+    const modalMarkup = `<img class="modal__poster" src=https://image.tmdb.org/t/p/w500${poster_path} alt="rectangle"/>
             <div class="modal__movie-data">
                 <p class="modal__movie-title">${title}</p>
                 <table class="modal__table">
@@ -143,8 +140,10 @@ export function modal(isItLibrery = false) {
       if (isFilmInWatched()) {
         removeFilmFromWatched();
         if (isItLibrery) {
-          document.location.reload();
-          renderWatchedFilmsFromStorage();
+          // document.location.reload();
+          onCloseModal();
+          renderFilmsFromStorage('Watched');
+          modal(true);
         }
       } else {
         addFilmToWatched();
@@ -155,8 +154,10 @@ export function modal(isItLibrery = false) {
       if (isFilmInQueue()) {
         removeFilmFromQueue();
         if (isItLibrery) {
-          document.location.reload();
-          renderQueuedFilmsFromStorage();
+          // document.location.reload();
+          onCloseModal();
+          renderFilmsFromStorage('Queued');
+          modal(true);
         }
       } else {
         addFilmToQueue();
