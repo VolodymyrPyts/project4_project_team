@@ -15,7 +15,7 @@ window.addEventListener('DOMContentLoaded', onPageLoad);
 libWatchedBtn.addEventListener('click', onWatchedBtnClick);
 libQueuedBtn.addEventListener('click', onQueuedBtnClick);
 
-function isLibreryEmpty(librery) {
+function isLibreryNotEmpty(librery) {
   if (
     localStorage.getItem(librery) &&
     JSON.parse(localStorage.getItem(librery)).length > 0
@@ -24,7 +24,7 @@ function isLibreryEmpty(librery) {
 }
 
 function onWatchedBtnClick() {
-  if (isLibreryEmpty('Watched')) {
+  if (isLibreryNotEmpty('Watched')) {
     cards.innerHTML = '';
     renderWatchedFilmsFromStorage();
     libWatchedBtn.classList.add('active_btn');
@@ -37,7 +37,7 @@ function onWatchedBtnClick() {
 }
 
 function onQueuedBtnClick() {
-  if (isLibreryEmpty('Queued')) {
+  if (isLibreryNotEmpty('Queued')) {
     cards.innerHTML = '';
     renderQueuedFilmsFromStorage();
     libWatchedBtn.classList.remove('active_btn');
@@ -50,11 +50,11 @@ function onQueuedBtnClick() {
 }
 
 function onPageLoad() {
-  if (isLibreryEmpty('Watched')) {
+  if (isLibreryNotEmpty('Watched')) {
     return onWatchedBtnClick();
   }
 
-  if (isLibreryEmpty('Queued')) {
+  if (isLibreryNotEmpty('Queued')) {
     return onQueuedBtnClick();
   }
 
