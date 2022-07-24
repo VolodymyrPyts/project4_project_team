@@ -2,6 +2,8 @@
 import { Notify } from 'notiflix';
 import { genres } from '../genres.json';
 import { modal } from './modal';
+import { fonNightDay } from './fonNightDay';
+
 const libWatchedBtn = document.querySelector('#lib__watched-btn');
 const libQueuedBtn = document.querySelector('#lib__queued-btn');
 const watchedFilms = localStorage.getItem('Watched');
@@ -50,6 +52,7 @@ function onQueuedBtnClick() {
 }
 
 function onPageLoad() {
+  fonNightDay();
   if (isLibreryNotEmpty('Watched')) {
     return onWatchedBtnClick();
   }
