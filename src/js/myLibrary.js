@@ -6,7 +6,7 @@ const libWatchedBtn = document.querySelector('#lib__watched-btn');
 const libQueuedBtn = document.querySelector('#lib__queued-btn');
 const watchedFilms = localStorage.getItem('Watched');
 const queuedFilms = localStorage.getItem('Queued');
-const cards = document.querySelector('.container-movie-card');
+export const cards = document.querySelector('.container-movie-card');
 
 const watchedFilmsArray = JSON.parse(watchedFilms);
 const queuedFilmsArray = JSON.parse(queuedFilms);
@@ -62,7 +62,7 @@ function renderEmptyLibrary() {
   cards.insertAdjacentHTML('beforeend', emptyLibMarkup);
 }
 
-function renderWatchedFilmsFromStorage() {
+export function renderWatchedFilmsFromStorage() {
   const markup = watchedFilmsArray.map(
     ({ id, title, poster_path, genre_ids, vote_average, release_date }) => {
       const filmsGenresList = getfilmsGenresUl(genre_ids).join(', ');
@@ -81,10 +81,10 @@ function renderWatchedFilmsFromStorage() {
     }
   )
     .join('');
-  cards.insertAdjacentHTML('beforeend', markup);
+  cards.innerHTML = markup;
 }
 
-function renderQueuedFilmsFromStorage() {
+export function renderQueuedFilmsFromStorage() {
   const markup = queuedFilmsArray.map(
     ({ id, title, poster_path, genre_ids, vote_average, release_date }) => {
       const filmsGenresList = getfilmsGenresUl(genre_ids).join(', ');
@@ -103,7 +103,7 @@ function renderQueuedFilmsFromStorage() {
     }
   )
     .join('');
-  cards.insertAdjacentHTML('beforeend', markup);
+  cards.innerHTML = markup;
 }
 
 function getfilmsGenresUl(genreId) {
