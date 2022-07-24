@@ -1,7 +1,10 @@
 import { genres } from '../genres.json';
-import { cards, renderWatchedFilmsFromStorage, renderQueuedFilmsFromStorage } from './myLibrary';
+import {
+  renderWatchedFilmsFromStorage,
+  renderQueuedFilmsFromStorage,
+} from './myLibrary';
 
-export function modal() {
+export function modal(isItLibrery = false) {
   const refs = {
     backdrop: document.querySelector('[data-modal]'),
     closeBtn: document.querySelector('[data-modal-close]'),
@@ -52,7 +55,12 @@ export function modal() {
 
     let filmData;
 
-    const filmsArray = JSON.parse(localStorage.getItem('films-request-result')).concat(JSON.parse(localStorage.getItem('Watched')), JSON.parse(localStorage.getItem('Queued')));
+    const filmsArray = JSON.parse(
+      localStorage.getItem('films-request-result')
+    ).concat(
+      JSON.parse(localStorage.getItem('Watched')),
+      JSON.parse(localStorage.getItem('Queued'))
+    );
 
     for (let item of filmsArray) {
       const ID = currentFilmId;
@@ -72,7 +80,7 @@ export function modal() {
       vote_count,
     } = filmData;
     const filmsGenresList = getFullFilmsGenresUl(genre_ids).join(', ');
-  
+
     const modalMarkup = `<img class="modal__poster" src=https://image.tmdb.org/t/p/original${poster_path} alt="rectangle"/>
             <div class="modal__movie-data">
                 <p class="modal__movie-title">${title}</p>
@@ -134,8 +142,10 @@ export function modal() {
     function watchedFilmHandler() {
       if (isFilmInWatched()) {
         removeFilmFromWatched();
-        document.location.reload();
-        renderWatchedFilmsFromStorage();
+        if (isItLibrery) {
+          document.location.reload();
+          renderWatchedFilmsFromStorage();
+        }
       } else {
         addFilmToWatched();
       }
@@ -144,8 +154,10 @@ export function modal() {
     function queueFilmHandler() {
       if (isFilmInQueue()) {
         removeFilmFromQueue();
-        document.location.reload();
-        renderQueuedFilmsFromStorage();
+        if (isItLibrery) {
+          document.location.reload();
+          renderQueuedFilmsFromStorage();
+        }
       } else {
         addFilmToQueue();
       }
@@ -216,16 +228,12 @@ export function modal() {
   }
 }
 
-  function getFullFilmsGenresUl(genreId) {
+function getFullFilmsGenresUl(genreId) {
   let filmsAllGenres = genres.reduce((acc, { id, name }) => {
     if (genreId.includes(id)) {
       acc.push(name);
     }
     return acc;
   }, []);
-  return filmsAllGenres
+  return filmsAllGenres;
 }
-
-
-
-
