@@ -72,7 +72,11 @@ export function modal() {
       vote_average,
       vote_count,
     } = filmData;
-    const filmsGenresList = getfilmsGenresUl(genre_ids).join(', ');
+
+    const filmsGenresList = getFullFilmsGenresUl(genre_ids).join(', ');
+    const imageUrl = poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : 'https://placehold.jp/aaabb1/ffffff/395x574.png?text=This%20movie%20has%20no%20poster%20%3A(';
+
+
 
     const modalMarkup = `
             <div class="modal-box_trailer">
@@ -81,8 +85,9 @@ export function modal() {
                 <use fill="#FF001B" href="./images/symbol-play.svg#icon-play-circle"></use>
               </svg>
               </button>
-              <img class="modal__poster" src=https://image.tmdb.org/t/p/original${poster_path} alt="rectangle"/>
+              <img class="modal__poster" src=https://image.tmdb.org/t/p/w500${poster_path} alt="rectangle"/>
             </div>
+
             <div class="modal__movie-data">
                 <p class="modal__movie-title">${title}</p>
                 <table class="modal__table">
