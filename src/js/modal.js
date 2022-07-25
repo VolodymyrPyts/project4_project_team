@@ -73,7 +73,7 @@ export function modal() {
       vote_count,
     } = filmData;
 
-    const filmsGenresList = getFullFilmsGenresUl(genre_ids).join(', ');
+    // const filmsGenresList = getFullFilmsGenresUl(genre_ids).join(', ');
     const imageUrl = poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : 'https://placehold.jp/aaabb1/ffffff/395x574.png?text=This%20movie%20has%20no%20poster%20%3A(';
 
 
@@ -111,7 +111,6 @@ export function modal() {
                     </tr>
                     <tr>
                         <td class="modal__data-title">Genre</td>
-                        <td class="modal__data-info">${filmsGenresList}</td>
                     </tr>
                 </table>
                 <div class="modal__movie-description">
