@@ -28,6 +28,7 @@ async function omFormUserSubmit(event) {
   fetchApi.resetPage();
   if (fetchApi.searchQuery === '') {
     refs.boxError.classList.remove('is-hidden');
+    clearResultsContainer();
     return removeLoader();
   }
 
@@ -36,6 +37,7 @@ async function omFormUserSubmit(event) {
 
     if (results.length === 0) {
       removeLoader();
+      clearResultsContainer();
       return refs.boxError.classList.remove('is-hidden');
     }
 

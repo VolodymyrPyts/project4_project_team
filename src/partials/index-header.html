@@ -1,61 +1,58 @@
 <header class="index__header">
-    <div class="">
-        <ul class="cap">
-            <li class="cap__item-logo">
-                <a class="cap__link" href="./index.html">
-                    <svg class="icon">
-                        <use href="./images/symbol-defs.svg#icon-film"></use>
-                    </svg>
-                    <span class="cap__logo-sp">Filmoteka</span>
-                </a>
-            </li>
-            <li class="cap__item">
-                <button class="bgr__btn-sun">
-                    <svg class="icon icon-sun">
-                        <use href="./images/symbol-defs.svg#icon-sun"></use>
-                    </svg>
-                </button>
-                <button class="bgr__btn-moon">
-                    <svg class="icon icon-moon">
-                        <use href="./images/symbol-defs.svg#icon-moon"></use>
-                    </svg>
-                </button>
-            </li>
-            <li class="cap__item">
-                <a class="home-js cap__link active" href="./index.html">Home</a>
-            </li>
-            <li class="cap__item">
-                <a class="cap__link" href="./myLibrary.html">my library</a>
-                <a class="logOut__btn hidden">
-                    LogOut
-                </a>
-                <button class="btn__form-login" type="button">
-                    <svg class="">
-                        <use href="./images/symbol.svg#icon-user-plus"></use>
-                    </svg>
-                </button>
-                <button class="btn__form-login-check" type="button">
-                    <svg class="">
-                        <use href="./images/symbol.svg#icon-user-check"></use>
-                    </svg>
-                </button>
-            </li>
-        </ul>
-        <form class="form">
-            <div class="form__box">
-
-                <input type="text" name="searchQuery" placeholder="Movie search">
-                <button class="input__btn" type="submit">
-                    <svg>
-                        <use href="./images/symbol-defs.svg#icon-search"></use>
-                    </svg>
-                </button>
-            </div>
-        </form>
-        <div class="cap__box-error is-hidden">
-            Search result not successful. Enter the correct movie name and try again
-        </div>
+  <div class="">
+    <ul class="cap">
+      <li class="cap__item-logo">
+        <a class="cap__link" href="./index.html">
+          <svg class="icon">
+            <use href="./images/symbol-defs.svg#icon-film"></use>
+          </svg>
+          <span class="cap__logo-sp">Filmoteka</span>
+        </a>
+      </li>
+      <li class="cap__item">
+        <button class="bgr__btn-sun" aria-label="button switch to light theme">
+          <svg class="icon icon-sun">
+            <use href="./images/symbol-defs.svg#icon-sun"></use>
+          </svg>
+        </button>
+        <button class="bgr__btn-moon" aria-label="button switch to dark theme">
+          <svg class="icon icon-moon">
+            <use href="./images/symbol-defs.svg#icon-moon"></use>
+          </svg>
+        </button>
+      </li>
+      <li class="cap__item">
+        <a class="home-js cap__link active" href="./index.html">Home</a>
+      </li>
+      <li class="cap__item">
+        <a class="cap__link" href="./myLibrary.html">my library</a>
+        <a class="logOut__btn hidden"> LogOut </a>
+        <button class="btn__form-login" type="button">
+          <svg class="">
+            <use href="./images/symbol.svg#icon-user-plus"></use>
+          </svg>
+        </button>
+        <button class="btn__form-login-check" type="button">
+          <svg class="">
+            <use href="./images/symbol.svg#icon-user-check"></use>
+          </svg>
+        </button>
+      </li>
+    </ul>
+    <form class="form">
+      <div class="form__box">
+        <input type="text" name="searchQuery" placeholder="Movie search" />
+        <button class="input__btn" type="submit" aria-label="button search">
+          <svg>
+            <use href="./images/symbol-defs.svg#icon-search"></use>
+          </svg>
+        </button>
+      </div>
+    </form>
+    <div class="cap__box-error is-hidden">
+      Search result not successful. Enter the correct movie name and try again
     </div>
+
     <div class="bacekdrop_box">
         <div class="modal__login">
             <button type="submit" name="submitBtn" class="modal-login__close-btn">
@@ -105,7 +102,11 @@
                         </div>
                     </form>
                 </div>
+
             </div>
+          </form>
         </div>
+      </div>
     </div>
+  </div>
 </header>
