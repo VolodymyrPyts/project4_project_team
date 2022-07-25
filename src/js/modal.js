@@ -1,15 +1,8 @@
-
 // import { genres } from '../genres.json';
 import { getfilmsGenresUl } from '../filmsListMarkup';
 import axios from 'axios';
 import * as basicLightbox from 'basiclightbox'
 export function modal() {
-
-// import { genres } from '../genres.json';
-//import { renderFilmsFromStorage } from './myLibrary';
-
-//export function modal(isItLibrery = false) {
-
   const refs = {
     backdrop: document.querySelector('[data-modal]'),
     closeBtn: document.querySelector('[data-modal-close]'),
@@ -58,16 +51,11 @@ export function modal() {
     const currentFilmId = Number(event.currentTarget.id);
     const movieContainer = document.querySelector('.container-movie-card');
 
+    let watchedBtn;
+
     let filmData;
 
-    const filmsArray = JSON.parse(
-      localStorage.getItem('films-request-result')
-    ).concat(
-      JSON.parse(localStorage.getItem('Watched')),
-      JSON.parse(localStorage.getItem('Queued'))
-    );
-
-    for (let item of filmsArray) {
+    for (let item of JSON.parse(localStorage.getItem('films-request-result'))) {
       const ID = currentFilmId;
       if (item.id === ID) {
         filmData = item;
@@ -84,8 +72,10 @@ export function modal() {
       vote_average,
       vote_count,
     } = filmData;
+
     const filmsGenresList = getFullFilmsGenresUl(genre_ids).join(', ');
     const imageUrl = poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : 'https://placehold.jp/aaabb1/ffffff/395x574.png?text=This%20movie%20has%20no%20poster%20%3A(';
+
 
 
     const modalMarkup = `
@@ -95,11 +85,8 @@ export function modal() {
                 <use fill="#FF001B" href="./images/symbol-play.svg#icon-play-circle"></use>
               </svg>
               </button>
-              <img class="modal__poster" src=https://image.tmdb.org/t/p/original${poster_path} alt="rectangle"/>
+              <img class="modal__poster" src=https://image.tmdb.org/t/p/w500${poster_path} alt="rectangle"/>
             </div>
-
-   // const modalMarkup = `<img class="modal__poster" src=https://image.tmdb.org/t/p/w500${poster_path} alt="rectangle"/>
-
 
             <div class="modal__movie-data">
                 <p class="modal__movie-title">${title}</p>
@@ -116,9 +103,7 @@ export function modal() {
                     </tr>
                     <tr>
                         <td class="modal__data-title">Popularity</td>
-                        <td class="modal__data-info">${Math.round(
-                          popularity
-                        )}</td>
+                        <td class="modal__data-info">${Math.round(popularity)}</td>
                     </tr>
                     <tr>
                         <td class="modal__data-title">Original Title</td>
@@ -147,7 +132,8 @@ export function modal() {
                         ? 'REMOVE&nbsp;FROM&nbsp;'
                         : 'ADD&nbsp;TO&nbsp;'
                     }QUEUE</button>
-                </div>`;
+                </div>
+              </div>`;
     refs.modalWrapper.innerHTML = modalMarkup;
 
     //Додавання фільмів з модального вікна у локальне сховище
@@ -161,12 +147,6 @@ export function modal() {
     function watchedFilmHandler() {
       if (isFilmInWatched()) {
         removeFilmFromWatched();
-        if (isItLibrery) {
-          // document.location.reload();
-          onCloseModal();
-          renderFilmsFromStorage('Watched');
-          modal(true);
-        }
       } else {
         addFilmToWatched();
       }
@@ -175,12 +155,6 @@ export function modal() {
     function queueFilmHandler() {
       if (isFilmInQueue()) {
         removeFilmFromQueue();
-        if (isItLibrery) {
-          // document.location.reload();
-          onCloseModal();
-          renderFilmsFromStorage('Queued');
-          modal(true);
-        }
       } else {
         addFilmToQueue();
       }
@@ -299,14 +273,4 @@ export function modal() {
     window.removeEventListener('keydown', onEscKeyPress);
     refs.backdrop.classList.add('is-hidden');
   }
-}
-
-function getFullFilmsGenresUl(genreId) {
-  let filmsAllGenres = genres.reduce((acc, { id, name }) => {
-    if (genreId.includes(id)) {
-      acc.push(name);
-    }
-    return acc;
-  }, []);
-  return filmsAllGenres;
 }
