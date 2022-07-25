@@ -3,8 +3,8 @@ export function fonNightDay() {
     const nightBtn = document.querySelector(".bgr__btn-moon");
     const daytBtn = document.querySelector(".bgr__btn-sun");
     let savedSettings = localStorage.getItem("state");
-    let clas = document.body.className;
     let parsedSettings = JSON.parse(savedSettings);
+    let clas = document.body.className;
     if (parsedSettings === null) {
         document.body.classList.add('bgr_day')
     };
