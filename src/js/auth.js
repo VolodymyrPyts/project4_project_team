@@ -36,6 +36,10 @@ const modalLogin = document.querySelector('.modal__login');
 const beginLoginBtn = document.querySelector('.btn__form-login');
 const logOutBtn = document.querySelector('.logOut__btn');
 const backDrop = document.querySelector('.bacekdrop_box');
+const modal = document.querySelector(".modal__login");
+const backdrop = document.querySelector(".bacekdrop_box");
+const closeBtn = document.querySelector(".modal-login__close-btn");
+
 
 logOutBtn.addEventListener('click', () => { 
     const auth = getAuth();
@@ -108,7 +112,7 @@ function onSingIn(email, password) {
     .catch((error) => {
     const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(`can not logIn ${errorMessage}`);
+        Notiflix.Notify.failure(`Can not Login ${errorMessage}`);
     });
     
 }
