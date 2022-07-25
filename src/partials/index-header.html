@@ -10,12 +10,12 @@
         </a>
       </li>
       <li class="cap__item">
-        <button class="bgr__btn-sun">
+        <button class="bgr__btn-sun" aria-label="button switch to light theme">
           <svg class="icon icon-sun">
             <use href="./images/symbol-defs.svg#icon-sun"></use>
           </svg>
         </button>
-        <button class="bgr__btn-moon">
+        <button class="bgr__btn-moon" aria-label="button switch to dark theme">
           <svg class="icon icon-moon">
             <use href="./images/symbol-defs.svg#icon-moon"></use>
           </svg>
@@ -42,7 +42,7 @@
     <form class="form">
       <div class="form__box">
         <input type="text" name="searchQuery" placeholder="Movie search" />
-        <button class="input__btn" type="submit">
+        <button class="input__btn" type="submit" aria-label="button search">
           <svg>
             <use href="./images/symbol-defs.svg#icon-search"></use>
           </svg>
@@ -52,6 +52,7 @@
     <div class="cap__box-error is-hidden">
       Search result not successful. Enter the correct movie name and try again
     </div>
+
   </div>
   <div class="bacekdrop_box">
     <div class="modal__login">
@@ -93,6 +94,7 @@
             </label>
             <div class="form-login__box">
               <button class="btn__add" type="submit">add</button>
+
             </div>
           </form>
         </div>

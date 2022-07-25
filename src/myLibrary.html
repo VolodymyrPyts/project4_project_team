@@ -1,28 +1,32 @@
 <!DOCTYPE html>
-<html lang="ru">
-
-<head>
+<html lang="en">
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Personal library for watched movies" />
     <title>Filmoteka</title>
     <link rel="stylesheet" href="./sass/index.scss" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon.svg"
+    />
+  </head>
 
-</head>
-
-<body>
-    <div class=".container-movie-card"></div>
-
-
+  <body>
     <!-- ❗️❗️❗️ Add partials like so for every page -->
     <include src="./partials/library-header.html"></include>
+    <section class="container-movie-card container library-container"></section>
     <include src="./partials/movie-card-modal.html"></include>
-    <include src="./partials/container-movie-card.html"></include>
+    <!-- <include src="./partials/container-movie-card.html"></include> -->
     <include src="./partials/footer.html"></include>
     <script type="module" src="./js/myLibrary.js"></script>
-</body>
-
+  </body>
 </html>
