@@ -1,48 +1,41 @@
-// import { genres } from '../genres.json';
-import { getfilmsGenresUl } from '../filmsListMarkup';
+
 import axios from 'axios';
 import * as basicLightbox from 'basiclightbox'
-export function modal() {
+import { genres } from '../genres.json';
+import { renderFilmsFromStorage } from './myLibrary';
+export function modal(isItLibrery = false) {
   const refs = {
     backdrop: document.querySelector('[data-modal]'),
     closeBtn: document.querySelector('[data-modal-close]'),
     openCards: document.querySelectorAll('.movie__card'),
     modalWrapper: document.querySelector('.modal-wrapper'),
   };
-
   let watchedArray = localStorage.getItem('Watched')
     ? JSON.parse(localStorage.getItem('Watched'))
     : [];
   let queuedArray = localStorage.getItem('Queued')
     ? JSON.parse(localStorage.getItem('Queued'))
     : [];
-
   // клік по карткам, відкриває модалку
   refs.openCards.forEach(item => {
     item.addEventListener('click', onOpenModal);
   });
-
   // клік по кнопці закрити, закриває модалку
   refs.closeBtn.addEventListener('click', onCloseModal);
-
   // клік по бекдропу, закриває модалку
   refs.backdrop.addEventListener('click', onBackdropClick);
-
   function onBackdropClick(event) {
     if (event.currentTarget === event.target) {
       onCloseModal();
     }
   }
-
   // Тільки при натисканні Escape закривається модалка
   function onEscKeyPress(event) {
     const ESC_KEY = event.code === 'Escape';
-
     if (ESC_KEY) {
       onCloseModal();
     }
   }
-
   // Функція відкривання модалки. Якщо модалка відкрита, слухаємо подію
   function onOpenModal(event, id) {
     document.body.style.overflow = 'hidden';
@@ -50,12 +43,14 @@ export function modal() {
     refs.backdrop.classList.remove('is-hidden');
     const currentFilmId = Number(event.currentTarget.id);
     const movieContainer = document.querySelector('.container-movie-card');
-
-    let watchedBtn;
-
     let filmData;
-
-    for (let item of JSON.parse(localStorage.getItem('films-request-result'))) {
+    const filmsArray = JSON.parse(
+      localStorage.getItem('films-request-result')
+    ).concat(
+      JSON.parse(localStorage.getItem('Watched')),
+      JSON.parse(localStorage.getItem('Queued'))
+    );
+    for (let item of filmsArray) {
       const ID = currentFilmId;
       if (item.id === ID) {
         filmData = item;
@@ -72,28 +67,22 @@ export function modal() {
       vote_average,
       vote_count,
     } = filmData;
-
-    // const filmsGenresList = getFullFilmsGenresUl(genre_ids).join(', ');
+    const filmsGenresList = getFullFilmsGenresUl(genre_ids).join(', ');
     const imageUrl = poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : 'https://placehold.jp/aaabb1/ffffff/395x574.png?text=This%20movie%20has%20no%20poster%20%3A(';
-
-
-
-    const modalMarkup = `
-            <div class="modal-box_trailer">
+    const modalMarkup = `<div class="modal-box_trailer">
               <button type="button" class="btn-open-trailer">
               <svg>
                 <use fill="#FF001B" href="./images/symbol-play.svg#icon-play-circle"></use>
               </svg>
               </button>
-              <img class="modal__poster" src=https://image.tmdb.org/t/p/w500${poster_path} alt="rectangle"/>
+              <img class="modal__poster" src=https://image.tmdb.org/t/p/w500${imageUrl} alt="rectangle"/>
             </div>
-
             <div class="modal__movie-data">
                 <p class="modal__movie-title">${title}</p>
                 <table class="modal__table">
                     <tr>
                         <td class="modal__data-title">Vote / Votes</td>
-                        <td class="modal__data-info"> 
+                        <td class="modal__data-info">
                             <span class="rating">${vote_average.toFixed(
                               1
                             )}</span>
@@ -103,7 +92,9 @@ export function modal() {
                     </tr>
                     <tr>
                         <td class="modal__data-title">Popularity</td>
-                        <td class="modal__data-info">${Math.round(popularity)}</td>
+                        <td class="modal__data-info">${Math.round(
+                          popularity
+                        )}</td>
                     </tr>
                     <tr>
                         <td class="modal__data-title">Original Title</td>
@@ -111,6 +102,7 @@ export function modal() {
                     </tr>
                     <tr>
                         <td class="modal__data-title">Genre</td>
+                        <td class="modal__data-info">${filmsGenresList}</td>
                     </tr>
                 </table>
                 <div class="modal__movie-description">
@@ -131,34 +123,39 @@ export function modal() {
                         ? 'REMOVE&nbsp;FROM&nbsp;'
                         : 'ADD&nbsp;TO&nbsp;'
                     }QUEUE</button>
-                </div>
-              </div>`;
+                </div>`;
     refs.modalWrapper.innerHTML = modalMarkup;
-
     //Додавання фільмів з модального вікна у локальне сховище
-
     const addToWatchedBtn = document.querySelector('#addToWatch');
     const addToQueueBtn = document.querySelector('#addToQueue');
-
     addToWatchedBtn.addEventListener('click', watchedFilmHandler);
     addToQueueBtn.addEventListener('click', queueFilmHandler);
-
     function watchedFilmHandler() {
       if (isFilmInWatched()) {
         removeFilmFromWatched();
+        if (isItLibrery) {
+          // document.location.reload();
+          onCloseModal();
+          renderFilmsFromStorage('Watched');
+          modal(true);
+        }
       } else {
         addFilmToWatched();
       }
     }
-
     function queueFilmHandler() {
       if (isFilmInQueue()) {
         removeFilmFromQueue();
+        if (isItLibrery) {
+          // document.location.reload();
+          onCloseModal();
+          renderFilmsFromStorage('Queued');
+          modal(true);
+        }
       } else {
         addFilmToQueue();
       }
     }
-
     function addFilmToWatched() {
       watchedArray = localStorage.getItem('Watched')
         ? JSON.parse(localStorage.getItem('Watched'))
@@ -167,7 +164,6 @@ export function modal() {
       localStorage.setItem('Watched', JSON.stringify(watchedArray));
       addToWatchedBtn.textContent = 'REMOVE FROM WATCHED';
     }
-
     function addFilmToQueue() {
       queuedArray = localStorage.getItem('Queued')
         ? JSON.parse(localStorage.getItem('Queued'))
@@ -176,7 +172,6 @@ export function modal() {
       localStorage.setItem('Queued', JSON.stringify(queuedArray));
       addToQueueBtn.textContent = 'REMOVE FROM QUEUE';
     }
-
     function removeFilmFromWatched() {
       watchedArray = JSON.parse(localStorage.getItem('Watched'));
       localStorage.setItem(
@@ -185,7 +180,6 @@ export function modal() {
       );
       addToWatchedBtn.textContent = 'ADD TO WATCHED';
     }
-
     function removeFilmFromQueue() {
       queuedArray = JSON.parse(localStorage.getItem('Queued'));
       localStorage.setItem(
@@ -194,7 +188,6 @@ export function modal() {
       );
       addToQueueBtn.textContent = 'ADD TO QUEUE';
     }
-
     function isFilmInWatched() {
       if (localStorage.getItem('Watched')) {
         for (let item of JSON.parse(localStorage.getItem('Watched'))) {
@@ -204,7 +197,6 @@ export function modal() {
         }
       }
     }
-
     function isFilmInQueue() {
       if (localStorage.getItem('Queued')) {
         for (let item of JSON.parse(localStorage.getItem('Queued'))) {
@@ -214,7 +206,6 @@ export function modal() {
         }
       }
     }
-    
     const baseUrl = 'https://api.themoviedb.org/3/';
     const key = 'f70abac86533d424df79b342ee8b9ff4';
     let trailerOficial = '';
@@ -263,9 +254,7 @@ export function modal() {
         modalTrailerWindow.show()
       });
     }
-    
   }
-
   // Коли модалка закривається, знімаємо слухача подій
   function onCloseModal() {
     document.body.style.overflow = '';
@@ -273,3 +262,24 @@ export function modal() {
     refs.backdrop.classList.add('is-hidden');
   }
 }
+function getFullFilmsGenresUl(genreId) {
+  let filmsAllGenres = genres.reduce((acc, { id, name }) => {
+    if (genreId.includes(id)) {
+      acc.push(name);
+    }
+    return acc;
+  }, []);
+  return filmsAllGenres;
+}
+
+
+
+
+
+
+
+
+
+
+
+
