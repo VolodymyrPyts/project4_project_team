@@ -8,7 +8,7 @@ const libWatchedBtn = document.querySelector('#lib__watched-btn');
 const libQueuedBtn = document.querySelector('#lib__queued-btn');
 // const watchedFilms = localStorage.getItem('Watched');
 // const queuedFilms = localStorage.getItem('Queued');
-const cards = document.querySelector('.container-movie-card');
+const cards = document.querySelector('.library-container');
 
 // const watchedFilmsArray = JSON.parse(watchedFilms);
 // const queuedFilmsArray = JSON.parse(queuedFilms);
