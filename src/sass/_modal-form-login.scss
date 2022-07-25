@@ -197,11 +197,7 @@ label {
     display: none;
 }
 
-.cap__item:nth-child(2) {
-    margin-left: auto;
-    margin-right: 20px;
-    margin-top: 4px;
-}
+
 
 .logOut__btn{
     cursor: pointer;
@@ -226,4 +222,12 @@ label {
         // pointer-events: none;
         display: none;
     }
+}
+.form__title {
+    color: #fff;
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 22px;
+    text-align: center;
 }

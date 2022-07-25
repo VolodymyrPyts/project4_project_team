@@ -52,47 +52,57 @@
     <div class="cap__box-error is-hidden">
       Search result not successful. Enter the correct movie name and try again
     </div>
-  </div>
-  <div class="bacekdrop_box">
-    <div class="modal__login">
-      <button type="submit" name="submitBtn" class="modal-login__close-btn">
-        <svg>
-          <use href="./images/symbol.svg#icon-x"></use>
-        </svg>
-      </button>
-      <div class="form-login">
-        <form class="singUp__form">
-          <label class="email">
-            Email
-            <input name="email" type="email" />
-          </label>
-          <label class="password">
-            Password
-            <input name="text" type="password" />
-          </label>
-          <div class="form-login__box">
-            <button class="singup" type="submit">SingUp</button>
-            <button type="button" class="btn__to-register">Register</button>
-          </div>
-        </form>
-      </div>
-      <div class="form__register">
-        <div class="">
-          <form class="singUp__form-second">
-            <label class="firstName">
-              Email
-              <input type="email" name="email" />
-            </label>
-            <label class="secondName">
-              Password
-              <input type="text" name="text" />
-            </label>
-            <label class="img">
-              img
-              <input name="image" class="img" type="file" />
-            </label>
-            <div class="form-login__box">
-              <button class="btn__add" type="submit">add</button>
+
+    <div class="bacekdrop_box">
+        <div class="modal__login">
+            <button type="submit" name="submitBtn" class="modal-login__close-btn">
+                <svg>
+                    <use href="./images/symbol.svg#icon-x"></use>
+                </svg>
+            </button>
+            <div class="form-login">
+                <h2 class="form__title">Log in</h2>
+                <form class="singUp__form">
+                    <label class="email">
+                        Email
+                        <input name="email" type='email'>
+                    </label>
+                    <label class="password">
+                        Password
+                        <input name="text" type="password">
+                    </label>
+                    <div class="form-login__box">
+                        <button class="singup" type="submit">
+                            SingUp
+                        </button>
+                        <button type="button" class="btn__to-register">Register</button>
+                    </div>
+                </form>
+            </div>
+            <div class="form__register">
+                <div class="">
+                    <h2 class="form__title">Sign up</h2>
+                    <form class="singUp__form-second">
+                        <label class="firstName">
+                            Email
+                            <input type="email" name="email">
+                        </label>
+                        <label class="secondName">
+                            Password
+                            <input type="password" name="text">
+                        </label>
+                        <label class="img">
+                            img
+                            <input name="image" class="img" type='file'>
+                        </label>
+                        <div class="form-login__box">
+                            <button class="btn__add" type="submit">
+                                add
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
             </div>
           </form>
         </div>
