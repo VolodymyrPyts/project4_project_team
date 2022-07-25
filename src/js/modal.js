@@ -77,8 +77,9 @@ export function modal(isItLibrery = false) {
       vote_count,
     } = filmData;
     const filmsGenresList = getFullFilmsGenresUl(genre_ids).join(', ');
+    const imageUrl = poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : 'https://placehold.jp/aaabb1/ffffff/395x574.png?text=This%20movie%20has%20no%20poster%20%3A(';
 
-    const modalMarkup = `<img class="modal__poster" src=https://image.tmdb.org/t/p/w500${poster_path} alt="rectangle"/>
+    const modalMarkup = `<img class="modal__poster" src="${imageUrl}" alt="rectangle"/>
             <div class="modal__movie-data">
                 <p class="modal__movie-title">${title}</p>
                 <table class="modal__table">
