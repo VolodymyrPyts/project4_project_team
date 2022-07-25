@@ -1,7 +1,8 @@
 // import { genres } from '../genres.json';
 import { getfilmsGenresUl } from '../filmsListMarkup';
 import axios from 'axios';
-import * as basicLightbox from 'basiclightbox'
+import defaultImage from '../../defaultImage.jpg';
+// import * as basicLightbox from 'basiclightbox'
 export function modal() {
   const refs = {
     backdrop: document.querySelector('[data-modal]'),
@@ -74,9 +75,9 @@ export function modal() {
     } = filmData;
 
     // const filmsGenresList = getFullFilmsGenresUl(genre_ids).join(', ');
-    const imageUrl = poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : 'https://placehold.jp/aaabb1/ffffff/395x574.png?text=This%20movie%20has%20no%20poster%20%3A(';
-
-
+    const imageUrl = poster_path
+      ? `https://image.tmdb.org/t/p/w500${poster_path}`
+      : defaultImage;
 
     const modalMarkup = `
             <div class="modal-box_trailer">
@@ -85,7 +86,7 @@ export function modal() {
                 <use fill="#FF001B" href="./images/symbol-play.svg#icon-play-circle"></use>
               </svg>
               </button>
-              <img class="modal__poster" src=https://image.tmdb.org/t/p/w500${poster_path} alt="rectangle"/>
+              <img class="modal__poster" src=${imageUrl} alt="rectangle"/>
             </div>
 
             <div class="modal__movie-data">
@@ -103,7 +104,9 @@ export function modal() {
                     </tr>
                     <tr>
                         <td class="modal__data-title">Popularity</td>
-                        <td class="modal__data-info">${Math.round(popularity)}</td>
+                        <td class="modal__data-info">${Math.round(
+                          popularity
+                        )}</td>
                     </tr>
                     <tr>
                         <td class="modal__data-title">Original Title</td>
@@ -214,36 +217,37 @@ export function modal() {
         }
       }
     }
-    
+
     const baseUrl = 'https://api.themoviedb.org/3/';
     const key = 'f70abac86533d424df79b342ee8b9ff4';
     let trailerOficial = '';
 
     async function fetchTrendMoviesTrailer() {
       try {
-        const { data } = await axios.get(`${baseUrl}/movie/${currentFilmId}/videos?api_key=${key}`);
-        
+        const { data } = await axios.get(
+          `${baseUrl}/movie/${currentFilmId}/videos?api_key=${key}`
+        );
+
         return data;
-      }
-      catch (error) {
+      } catch (error) {
         console.error('ERROR');
       }
     }
     fetchTrendMoviesTrailer().then(data => {
-      getsTrailer(data)
+      getsTrailer(data);
     });
     function getsTrailer(data) {
-      
       const trailer = data.results;
       const nameTrailer = trailer.filter(nameTrailer => {
         if (nameTrailer.name === 'Official Trailer') {
-          trailerOficial =  nameTrailer.key
+          trailerOficial = nameTrailer.key;
         }
       });
 
       const cardsBtn = document.querySelector('.btn-open-trailer');
-                 
-      const modalTrailerWindow = basicLightbox.create(`
+
+      const modalTrailerWindow = basicLightbox.create(
+        `
           <div class="modal">
                  <iframe width="640" height="480" frameborder="0" allowfullscreen="" allow="autoplay" src="https://www.youtube.com/embed/${trailerOficial}?autoplay=1">
                   </iframe>
@@ -251,19 +255,21 @@ export function modal() {
                   <button type="button" class="trailer__close-btn">
                           <svg width="30" height="30" fill="#fff" xmlns="http://www.w3.org/2000/svg" ><path d="m8 8 14 14M8 22 22 8" stroke="#000" stroke-width="2"></path></svg>
                   </button>
-          </div>`
-      , {
-        onShow: (modalTrailerWindow) => {
-          
-          modalTrailerWindow.element().querySelector('.trailer__close-btn').onclick = modalTrailerWindow.close
-          }
-      });
-          
+          </div>`,
+        {
+          onShow: modalTrailerWindow => {
+            modalTrailerWindow
+              .element()
+              .querySelector('.trailer__close-btn').onclick =
+              modalTrailerWindow.close;
+          },
+        }
+      );
+
       cardsBtn.addEventListener('click', () => {
-        modalTrailerWindow.show()
+        modalTrailerWindow.show();
       });
     }
-    
   }
 
   // Коли модалка закривається, знімаємо слухача подій
