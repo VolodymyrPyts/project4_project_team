@@ -2,6 +2,7 @@ import axios from 'axios';
 import { genres } from './genres.json';
 import { initPagination } from './js/pagination';
 import { modal } from './js/modal';
+import defaultImage from '../defaultImage.jpg';
 const baseUrl = 'https://api.themoviedb.org/3/';
 const key = 'f70abac86533d424df79b342ee8b9ff4';
 let page = 1;
@@ -32,7 +33,9 @@ export function makeFilmsMarkup(movie) {
     .map(
       ({ id, title, poster_path, genre_ids, vote_average, release_date }) => {
         const filmsGenresList = getfilmsGenresUl(genre_ids).join(', ');
-        const imageUrl = poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : 'https://placehold.jp/aaabb1/ffffff/395x574.png?text=This%20movie%20has%20no%20poster%20%3A(';
+        const imageUrl = poster_path
+          ? `https://image.tmdb.org/t/p/w500${poster_path}`
+          : defaultImage;
         return `<div class="movie__card" id=${id}>
     <img class="movie__poster" src="${imageUrl}" alt="${title}" loading="lazy">
     <div class="movie__info">

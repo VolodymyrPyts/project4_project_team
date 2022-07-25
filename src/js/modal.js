@@ -1,9 +1,11 @@
 
 import axios from 'axios';
-import * as basicLightbox from 'basiclightbox'
+
+import defaultImage from '../../defaultImage.jpg';
 import { genres } from '../genres.json';
 import { renderFilmsFromStorage } from './myLibrary';
 export function modal(isItLibrery = false) {
+
   const refs = {
     backdrop: document.querySelector('[data-modal]'),
     closeBtn: document.querySelector('[data-modal-close]'),
@@ -67,15 +69,29 @@ export function modal(isItLibrery = false) {
       vote_average,
       vote_count,
     } = filmData;
-    const filmsGenresList = getFullFilmsGenresUl(genre_ids).join(', ');
-    const imageUrl = poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : 'https://placehold.jp/aaabb1/ffffff/395x574.png?text=This%20movie%20has%20no%20poster%20%3A(';
-    const modalMarkup = `<div class="modal-box_trailer">
-              <img class="modal__poster" src=https://image.tmdb.org/t/p/w500${imageUrl} alt="rectangle"/>
+
+
+    // const filmsGenresList = getFullFilmsGenresUl(genre_ids).join(', ');
+    const imageUrl = poster_path
+      ? `https://image.tmdb.org/t/p/w500${poster_path}`
+      : defaultImage;
+
+    const modalMarkup = `
+            <div class="modal-box_trailer">
+
+ //  const filmsGenresList = getFullFilmsGenresUl(genre_ids).join(', ');
+  //  const imageUrl = poster_path ? `https://image.tmdb.org/t/p/w500${poster_path}` : 'https://placehold.jp/aaabb1/ffffff/395x574.png?text=This%20movie%20has%20no%20poster%20%3A(';
+ //   const modalMarkup = `<div class="modal-box_trailer">
+ //             <img class="modal__poster" src=https://image.tmdb.org/t/p/w500${imageUrl} alt="rectangle"/>
+
               <button type="button" class="btn-open-trailer">
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
                   <path d="M23 12c0-3.037-1.232-5.789-3.222-7.778s-4.741-3.222-7.778-3.222-5.789 1.232-7.778 3.222-3.222 4.741-3.222 7.778 1.232 5.789 3.222 7.778 4.741 3.222 7.778 3.222 5.789-1.232 7.778-3.222 3.222-4.741 3.222-7.778zM21 12c0 2.486-1.006 4.734-2.636 6.364s-3.878 2.636-6.364 2.636-4.734-1.006-6.364-2.636-2.636-3.878-2.636-6.364 1.006-4.734 2.636-6.364 3.878-2.636 6.364-2.636 4.734 1.006 6.364 2.636 2.636 3.878 2.636 6.364zM10.555 7.168c-0.156-0.105-0.348-0.168-0.555-0.168-0.552 0-1 0.448-1 1v8c-0.001 0.188 0.053 0.383 0.168 0.555 0.306 0.46 0.927 0.584 1.387 0.277l6-4c0.103-0.068 0.2-0.162 0.277-0.277 0.306-0.46 0.182-1.080-0.277-1.387zM11 9.869l3.197 2.131-3.197 2.131z"></path>
                 </svg>
               </button>
+
+              <img class="modal__poster" src=${imageUrl} alt="rectangle"/>
+
             </div>
             <div class="modal__movie-data">
                 <p class="modal__movie-title">${title}</p>
@@ -206,35 +222,37 @@ export function modal(isItLibrery = false) {
         }
       }
     }
+
     const baseUrl = 'https://api.themoviedb.org/3/';
     const key = 'f70abac86533d424df79b342ee8b9ff4';
     let trailerOficial = '';
 
     async function fetchTrendMoviesTrailer() {
       try {
-        const { data } = await axios.get(`${baseUrl}/movie/${currentFilmId}/videos?api_key=${key}`);
-        
+        const { data } = await axios.get(
+          `${baseUrl}/movie/${currentFilmId}/videos?api_key=${key}`
+        );
+
         return data;
-      }
-      catch (error) {
+      } catch (error) {
         console.error('ERROR');
       }
     }
     fetchTrendMoviesTrailer().then(data => {
-      getsTrailer(data)
+      getsTrailer(data);
     });
     function getsTrailer(data) {
-      
       const trailer = data.results;
       trailer.filter(nameTrailer => {
         if (nameTrailer.name === 'Official Trailer') {
-          trailerOficial =  nameTrailer.key
+          trailerOficial = nameTrailer.key;
         }
       });
 
       const cardsBtn = document.querySelector('.btn-open-trailer');
-                 
-      const modalTrailerWindow = basicLightbox.create(`
+
+      const modalTrailerWindow = basicLightbox.create(
+        `
           <div class="modal">
                  <iframe width="640" height="480" frameborder="0" allowfullscreen="" allow="autoplay" src="https://www.youtube.com/embed/${trailerOficial}?autoplay=1">
                   </iframe>
@@ -242,16 +260,19 @@ export function modal(isItLibrery = false) {
                   <button type="button" class="trailer__close-btn">
                           <svg width="30" height="30" fill="#fff" xmlns="http://www.w3.org/2000/svg" ><path d="m8 8 14 14M8 22 22 8" stroke="#000" stroke-width="2"></path></svg>
                   </button>
-          </div>`
-      , {
-        onShow: (modalTrailerWindow) => {
-          
-          modalTrailerWindow.element().querySelector('.trailer__close-btn').onclick = modalTrailerWindow.close
-          }
-      });
-          
+          </div>`,
+        {
+          onShow: modalTrailerWindow => {
+            modalTrailerWindow
+              .element()
+              .querySelector('.trailer__close-btn').onclick =
+              modalTrailerWindow.close;
+          },
+        }
+      );
+
       cardsBtn.addEventListener('click', () => {
-        modalTrailerWindow.show()
+        modalTrailerWindow.show();
       });
     }
   }
