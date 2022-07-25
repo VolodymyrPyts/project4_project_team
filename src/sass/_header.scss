@@ -328,15 +328,31 @@ form svg {
     margin-top: 2px;
 }
 .btn-open-trailer {
+    cursor: pointer;
     border: none;
-    // background: rgba(0, 0, 0, 0);
     position: absolute;
-    top: 50%;
-    left: 43%;
+    background: rgba(0, 0, 0, 0);
+    top: 45%;
+    left: 35%;
+    @media screen and (min-width: 1280px) {
+        top: 45%;
+        left: 40%;
+    }
+   
     svg {
+        background: rgba(0, 0, 0, 0.4);
         fill: #FF001B;
-        width: 30px;
-        height: 30px;
+        width: 60px;
+        height: 60px;
+        box-shadow: 1px 3px 2px #545454, 0 3px 3px #545454, 3px 3px 3px #545454;
+        &:hover {
+            fill: #FF001B;
+            transform: scale(1.03);
+            background: rgba(#fff , 0.4);
+            box-shadow: 1px 3px 2px #fff, 0 3px 3px #fff, 3px 3px 3px #fff;
+        }
+        border-radius: 30px;
+        
     }
 }
 
@@ -368,8 +384,9 @@ form svg {
 }
 
 .trailer__close-btn {
+    cursor: pointer;
     @media screen and (max-width: 768px) {
-        transform: translateY(14px) translateX(-43px);
+        transform: translateY(-24px) translateX(-30px);
     }
     position: absolute;
     background-color: gold;
