@@ -44,7 +44,7 @@ const closeBtn = document.querySelector(".modal-login__close-btn");
 logOutBtn.addEventListener('click', () => { 
     const auth = getAuth();
     signOut(auth).then(() => {
-            Notiflix.Notify.success('by');
+            Notiflix.Notify.info('success LogOut');
         beginLoginBtn.classList.remove('hidden');
         logOutBtn.classList.add('hidden');
 }).catch((error) => {
@@ -157,3 +157,59 @@ function updateUser(currentUser,fullName) {
 });
 }
 
+Notiflix.Notify.init({
+    width: '280px',
+    position: 'right-top',
+    distance: '10px',
+    opacity: 1,
+    borderRadius: '5px',
+    rtl: false,
+    timeout: 3000,
+    messageMaxLength: 110,
+    backOverlay: false,
+    backOverlayColor: 'rgba(0,0,0,0.5)',
+    plainText: true,
+    showOnlyTheLastOne: false,
+    clickToClose: false,
+    pauseOnHover: true,
+    ID: 'NotiflixNotify',
+    className: 'notiflix-notify',
+    zindex: 4001,
+    fontFamily: 'Quicksand',
+    fontSize: '13px',
+    cssAnimation: true,
+    cssAnimationDuration: 400,
+    cssAnimationStyle: 'fade',
+    closeButton: false,
+    useIcon: true,
+    useFontAwesome: false,
+    fontAwesomeIconStyle: 'basic',
+    fontAwesomeIconSize: '34px',
+    success: {
+        background: '#ffffff',
+        textColor: '#000',
+        childClassName: 'notiflix-notify-success',
+        notiflixIconColor: '#00ff00',
+        fontAwesomeClassName: 'fas fa-check-circle',
+        fontAwesomeIconColor: '#00ff00',
+        backOverlayColor: 'rgba(50,198,130,0.2)',
+    },
+    failure: {
+        background: '#ffffff',
+        textColor: '#000',
+        childClassName: 'notiflix-notify-success',
+        notiflixIconColor: '#ff0000',
+        fontAwesomeClassName: 'fas fa-check-circle',
+        fontAwesomeIconColor: '#ff0000',
+        backOverlayColor: 'rgba(50,198,130,0.2)',
+    },
+    info: {
+        background: '#ffffff',
+        textColor: '#000',
+        childClassName: 'notiflix-notify-info',
+        notiflixIconColor: '#0000ff',
+        fontAwesomeClassName: 'fas fa-info-circle',
+        fontAwesomeIconColor: '#0000ff',
+        backOverlayColor: 'rgba(38,192,211,0.2)',
+    }
+});
