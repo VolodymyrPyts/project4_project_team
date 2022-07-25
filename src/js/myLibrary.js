@@ -3,6 +3,7 @@ import { Notify } from 'notiflix';
 import { genres } from '../genres.json';
 import { modal } from './modal';
 import { fonNightDay } from './fonNightDay';
+import defoultImage from '../images/no-poster.webp'
 
 const libWatchedBtn = document.querySelector('#lib__watched-btn');
 const libQueuedBtn = document.querySelector('#lib__queued-btn');
@@ -67,7 +68,10 @@ function onPageLoad() {
 function renderEmptyLibrary() {
   if (cards)
     cards.innerHTML =
-      '<p class="lib__empty-placeholder">Oops! There is no films here yet:-(</p>';
+      `<div class="library-container--empty">
+            <p class="lib__empty-placeholder">Add your favourite movies here!</p>
+            <img class="library-container__img" alt="movie-chair" src='${defoultImage}' />
+        </div>`
 }
 
 // export function renderWatchedFilmsFromStorage() {
