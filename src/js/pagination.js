@@ -16,8 +16,6 @@ let pageCount;
 const FILMS_REQUEST_RESULT = 'films-request-result';
 const fetchApi = new FetchApi();
 
-// const MAX_PAGE_COUNT = 500; виявилося лише для популярних обмеження
-
 paginationButtonPrevRef.addEventListener('click', onPaginationButtonPrevClick);
 paginationButtonNextRef.addEventListener('click', onPaginationButtonNextClick);
 paginationWrapperRef.addEventListener('click', onPaginationButtonClick);
@@ -39,7 +37,6 @@ async function getTrendingFilms() {
   pageCount = total_pages;
   localStorage.setItem(FILMS_REQUEST_RESULT, JSON.stringify(results));
   drawSectionRef.innerHTML = makemovieForKeywordMarkup(results);
-  
 }
 
 async function getSearchedFilms() {
@@ -167,6 +164,14 @@ function onPaginationButtonPrevClick() {
 }
 
 function setButtonArrowState() {
+  if (pageCount === 0) {
+    paginationButtonPrevRef.style.display = 'none';
+    paginationButtonNextRef.style.display = 'none';
+    return;
+  } else {
+    paginationButtonPrevRef.style.display = 'flex';
+    paginationButtonNextRef.style.display = 'flex';
+  }
   if (fetchApi.pageNumber === 1) {
     paginationButtonPrevRef.setAttribute('disabled', 'true');
   } else {

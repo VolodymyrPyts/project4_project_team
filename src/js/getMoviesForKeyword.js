@@ -5,6 +5,7 @@ import { initPagination } from './pagination';
 import { addLoader, removeLoader } from './loader';
 import { makemovieForKeywordMarkup } from './makemovieForKeywordMarkup';
 import { modal } from './modal';
+import noposter from './../images/no-poster.webp';
 import axios from 'axios';
 
 const fetchApi = new FetchApi();
@@ -38,6 +39,7 @@ async function omFormUserSubmit(event) {
     if (results.length === 0) {
       removeLoader();
       clearResultsContainer();
+      initPagination(0);
       return refs.boxError.classList.remove('is-hidden');
     }
 
@@ -58,12 +60,14 @@ async function omFormUserSubmit(event) {
 }
 
 function appendResultsMarkup(results) {
-  refs.markupMuvieForKeyword.insertAdjacentHTML(
-    'beforeend',
-    makemovieForKeywordMarkup(results)
-  );
+  // refs.markupMuvieForKeyword.insertAdjacentHTML(
+  //   'beforeend',
+  //   makemovieForKeywordMarkup(results)
+  // );
+
+  refs.markupMuvieForKeyword.innerHTML = makemovieForKeywordMarkup(results);
 }
 
 function clearResultsContainer() {
-  refs.markupMuvieForKeyword.innerHTML = '';
+  refs.markupMuvieForKeyword.innerHTML = `<img src=${noposter} class="library-container__img" alt="nothing to show">`;
 }
