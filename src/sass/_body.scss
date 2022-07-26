@@ -35,26 +35,4 @@ img {
     display: block;
 }
 
-// scroll top
-#scrolTop {
-    position: fixed;
-    bottom: 110px;
-    right: 70px;
-    font-size: 40px;
-    z-index: 9999;
-    color: var(--first-text-color);
-    cursor: pointer;
 
-    &:hover{
-        color: var(--active-color);  
-    }
-}
-
-
-.isShowBtn {
-    opacity: 1;
-
-    &_hide{
-        opacity: 0;
-    }
-}
