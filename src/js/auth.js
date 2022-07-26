@@ -7,12 +7,6 @@ import {
     onAuthStateChanged, 
     updateProfile,
 } from 'firebase/auth';
-import {
-    getStorage,
-    ref,
-    uploadBytesResumable,
-    getDownloadURL,
-} from 'firebase/storage';
 import Notiflix, { Notify }from 'notiflix'
 
 const firebaseConfig = {
@@ -28,34 +22,21 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
-const storage = getStorage(app);
 
+const loginForm = document.querySelector('.form-login');
 const singInForm = document.querySelector('.singUp__form');
-const singUpForm = document.querySelector('.singUp__form-second');
+const registrationForm = document.querySelector('.form__register');
 const modalLogin = document.querySelector('.modal__login');
 const beginLoginBtn = document.querySelector('.btn__form-login');
 const logOutBtn = document.querySelector('.logOut__btn');
 const backDrop = document.querySelector('.bacekdrop_box');
-const modal = document.querySelector(".modal__login");
-const backdrop = document.querySelector(".bacekdrop_box");
-const closeBtn = document.querySelector(".modal-login__close-btn");
+const formBackBtn = document.querySelector('.modal-login__back-btn');
 
-
-logOutBtn.addEventListener('click', () => { 
-    const auth = getAuth();
-    signOut(auth).then(() => {
-            Notiflix.Notify.info('success LogOut');
-        beginLoginBtn.classList.remove('hidden');
-        logOutBtn.classList.add('hidden');
-}).catch((error) => {
-  // An error happened.
-});
-})
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
       const uid = user.uid;
-            beginLoginBtn.classList.add('hidden');
+        beginLoginBtn.classList.add('hidden');
         logOutBtn.classList.remove('hidden');
   } else {
   }
@@ -65,97 +46,112 @@ singInForm.addEventListener('submit', e => {
     e.preventDefault();
     const email = singInForm.elements.email.value;
     const password = singInForm.elements.text.value;
-    onSingIn(email, password);
+
+    onSingIn(email, password, singInForm);
 });
 
 
-singUpForm.addEventListener('submit',  e => { 
+registrationForm.addEventListener('submit',  e => { 
     e.preventDefault();
+    const fullName = registrationForm.elements.firstName.value + " " + registrationForm.elements.secondName.value;
+    const email = registrationForm.elements.reg_email.value;
+    const password = registrationForm.elements.reg_password.value;
+    const passwordRepeat = registrationForm.elements.register_check.value;
 
-    // const file = singUpForm.elements.image.files.item(0);
-    // const path = 'userPhotos/' + file.name;
-    // const imageRef = ref(storage, path);
-    const fullName = singUpForm.elements.firstName.value + " " + singUpForm.elements.secondName.value;
+    if (password === passwordRepeat) {
+        onRegistration(email, password, fullName, registrationForm);
+        registrationForm.elements.register_check.classList.remove('error');
+    } else { 
+        Notiflix.Notify.failure('Passwords do not match!');
+        registrationForm.elements.register_check.classList.add('error');
+    }
+})
 
-    const email = singInForm.elements.email.value;
-    const password = singInForm.elements.text.value;
-
-    createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            Notiflix.Notify.success(`Add new user ${email}`);
-            // ...
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // ..
-        });
-    
+logOutBtn.addEventListener('click', () => { 
+    const auth = getAuth();
+    signOut(auth).then(() => {
+            Notiflix.Notify.info('success LogOut');
+        beginLoginBtn.classList.remove('hidden');
+        logOutBtn.classList.add('hidden');
+}).catch((error) => {
+});
 })
 
 
-function onSingIn(email, password) { 
+function onSingIn(email, password,form) { 
     signInWithEmailAndPassword(auth,email, password)
     .then((userCredential) => {
-    // Signed in 
         const user = userCredential.user;
         Notiflix.Notify.success(`Welcome ${email}`);
         modalLogin.classList.remove('is-hidd');
         beginLoginBtn.classList.add('hidden');
         logOutBtn.classList.remove('hidden');
         backDrop.classList.remove('bacekdrop');
-
-    // ...
+        resetForm(form)
     })
     .catch((error) => {
     const errorCode = error.code;
         const errorMessage = error.message;
         Notiflix.Notify.failure(`Can not Login ${errorMessage}`);
     });
-    
 }
 
-
-// async function makeImgUrl(imageRef, file) { 
-//     const uploadTask = uploadBytesResumable(imageRef, file);
-//     let url = '';
-
-//     try { 
-//         url = await getDownloadURL(uploadTask.snapshot.ref);
-//     }
-//     return url;
-// };
-
-
-
-
+function onRegistration(email, password, fullName,form) { 
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+        const user = userCredential.user;
+        Notiflix.Notify.success(`Add new user ${email}`);
+        modalLogin.classList.remove('is-hidd');
+        beginLoginBtn.classList.add('hidden');
+        logOutBtn.classList.remove('hidden');
+        backDrop.classList.remove('bacekdrop');
+            
+            updateUser(auth.currentUser, fullName);
+            resetForm(form);
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            Notiflix.Notify.failure(`Can not finish registration ${errorMessage}`);
+        });
+}
 
 
 function updateUser(currentUser,fullName) { 
         updateProfile(currentUser, {
         displayName: fullName,
-        // photoURL: photoUrl,
     }).then(() => {
-                const user = auth.currentUser;
-    if (user !== null) {
-        const displayName = user.displayName;
-        const email = user.email;
-        // const photoURL = user.photoURL;
-        const emailVerified = user.emailVerified;
-    
+        const user = auth.currentUser;
+        
+        if (user !== null) {
+            const displayName = user.displayName;
+            const email = user.email;
+            const emailVerified = user.emailVerified;
+
         console.log(`displayName - ${displayName}`);
         console.log(`email - ${email}`);
-        // console.log(`photoURL -${photoURL}`);
         console.log(`emailVerified -${emailVerified}`);
-
-    const uid = user.uid;
-    }
-    })
+        const uid = user.uid;
+        }})
         .catch((error) => {
 });
 }
+
+function resetForm(form) { 
+    form.reset();
+    loginForm.classList.remove('oldForm');
+    registrationForm.classList.remove('newForm');
+    formBackBtn.classList.add('hidden');
+    modalLogin.classList.remove('newFormJS');
+    
+}
+
+formBackBtn.addEventListener('click', () => { 
+    formBackBtn.classList.add('hidden');
+    modalLogin.classList.remove('newFormJS');
+    loginForm.classList.remove('oldForm');
+    registrationForm.classList.remove('newForm');
+})
 
 Notiflix.Notify.init({
     width: '280px',

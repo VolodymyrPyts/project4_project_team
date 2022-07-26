@@ -60,8 +60,13 @@
           <use href="./images/symbol.svg#icon-x"></use>
         </svg>
       </button>
-      <div class="form-login">
-        <form class="singUp__form">
+      <button type="button" class="modal-login__back-btn hidden">
+          <svg>
+            <use href="./images/symbol.svg#icon-arrow-left"></use>
+          </svg>
+      </button>
+      <!-- <div class="form-login"> -->
+        <form class="singUp__form form-login">
           <label class="email">
             Email
             <input name="email" type="email" />
@@ -71,32 +76,39 @@
             <input name="text" type="password" />
           </label>
           <div class="form-login__box">
-            <button class="singup" type="submit">SingUp</button>
-            <button type="button" class="btn__to-register">Register</button>
+            <button class="singup" type="submit">LogIn</button>
+            <p> or</p>
+            <a class="btn__to-register">Registration</button>
           </div>
         </form>
-      </div>
-      <div class="form__register">
-        <div class="">
-          <form class="singUp__form-second">
+      <!-- </div> -->
+      <!-- <div class="form__register"> -->
+          <form class="singUp__form-second form__register">
             <label class="firstName">
-              firstName
-              <input type="email" name="email" />
+              First Name
+              <input type="text" name="firstName" />
             </label>
             <label class="secondName">
-              secondName
-              <input type="text" name="text" />
+              Second Name
+              <input type="text" name="secondName" />
             </label>
-            <label class="img">
-              img
-              <input name="image" class="img" type="file" />
+            <label class="form__register-email">
+            Email
+            <input type="email" name="reg_email">
+            </label>
+            <label class="form__register-password">
+              Password
+              <input type="password" name="reg_password">
+            </label>
+            <label class="form__register-check">
+              Repeat password
+              <input type="password" name="register_check" class="register_check">
             </label>
             <div class="form-login__box">
-              <button class="btn__add" type="submit">add</button>
+              <button class="btn__add" type="submit">Registration</button>
             </div>
           </form>
-        </div>
-      </div>
+      <!-- </div> -->
     </div>
   </div>
 </header>
