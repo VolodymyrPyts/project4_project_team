@@ -4,6 +4,7 @@ import { genres } from '../genres.json';
 import { modal } from './modal';
 import { fonNightDay } from './fonNightDay';
 import defoultImage from '../images/no-poster.webp'
+import './scroll';
 
 const libWatchedBtn = document.querySelector('#lib__watched-btn');
 const libQueuedBtn = document.querySelector('#lib__queued-btn');
