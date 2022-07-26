@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     background-color: var(--bgBasic);
@@ -29,4 +33,23 @@ ul {
 
 img {
     display: block;
+}
+
+// scroll top
+#scrolTop {
+    position: fixed;
+    bottom: 150px;
+    right: 70px;
+    font-size: 40px;
+    z-index: 9999;
+    color: --active-color;
+    cursor: pointer;
+}
+
+.isShowBtn {
+    opacity: 1;
+
+    &_hide{
+        opacity: 0;
+    }
 }
