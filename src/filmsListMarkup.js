@@ -2,6 +2,7 @@ import axios from 'axios';
 import { genres } from './genres.json';
 import { initPagination } from './js/pagination';
 import { modal } from './js/modal';
+import defaultImage from '../defaultImage.jpg';
 const baseUrl = 'https://api.themoviedb.org/3/';
 const key = 'f70abac86533d424df79b342ee8b9ff4';
 let page = 1;
@@ -32,8 +33,11 @@ export function makeFilmsMarkup(movie) {
     .map(
       ({ id, title, poster_path, genre_ids, vote_average, release_date }) => {
         const filmsGenresList = getfilmsGenresUl(genre_ids).join(', ');
+        const imageUrl = poster_path
+          ? `https://image.tmdb.org/t/p/w500${poster_path}`
+          : defaultImage;
         return `<div class="movie__card" id=${id}>
-    <img class="movie__poster" src=https://image.tmdb.org/t/p/original${poster_path} alt="${title}">
+    <img class="movie__poster" src="${imageUrl}" alt="${title}" loading="lazy">
     <div class="movie__info">
        <p class="movie__name">${trimMovieTitle(title)}</p>
       <div class="movie__data">
@@ -69,5 +73,5 @@ export function trimMovieTitle(movieTitle) {
   if (movieTitle.length > 30) {
     return `${movieTitle.substring(0, 30)} <span>...</span>`;
   }
-return movieTitle
+  return movieTitle;
 }

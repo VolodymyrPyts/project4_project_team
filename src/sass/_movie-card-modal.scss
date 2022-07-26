@@ -82,7 +82,7 @@
 .modal__poster {
     width: 240px;
     height: 357px;
-    margin-bottom: 20px;
+    
 
     @media screen and (max-width: 480px) {
             margin-left: auto;
@@ -93,14 +93,15 @@
     @media screen and (min-width: 768px) {
         width: 264px;
         min-height: 374px;
-        margin-right: 68px;
     }
 
     @media screen and (min-width: 1280px) {
         width: 375px;
         min-height: 478px;
-        margin-right: 16px;
-        margin-bottom: 0px;
+
+      //  margin-right: 16px;
+      //  margin-bottom: 0px;
+
     }
 }
 
