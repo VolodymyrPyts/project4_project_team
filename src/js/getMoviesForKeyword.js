@@ -60,11 +60,6 @@ async function omFormUserSubmit(event) {
 }
 
 function appendResultsMarkup(results) {
-  // refs.markupMuvieForKeyword.insertAdjacentHTML(
-  //   'beforeend',
-  //   makemovieForKeywordMarkup(results)
-  // );
-
   refs.markupMuvieForKeyword.innerHTML = makemovieForKeywordMarkup(results);
 }
 

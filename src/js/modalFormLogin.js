@@ -46,37 +46,7 @@ export function modalFormLogin() {
       refs.modalBackdrop.classList.remove("bacekdrop");
     }
       
-      // form.addEventListener("submit", (e) => {
-      //   e.preventDefault();
-      //   const emailInput = e.currentTarget.email.value.trim();
-      //   const keylInput = e.currentTarget.text.value.trim();
-      //   if (emailInput === '' || keylInput === '') {
-      //     alert("Fill in the field!");
-      //   } else {
-      //     console.log("Email:", emailInput);
-      //     console.log("Key:", keylInput);
-      //     form.reset();
-      //     toggleModalClose();
-      //     alert("You have successfully logged into your account");
-      //     refs.openModalBtn.style.display = 'none';
-      //     refs.checkModalBtn.style.display = 'block';
-      //   }
-      // });
-      // formReg.addEventListener("submit", (e) => {
-      //   e.preventDefault();
-      //   const emailInput = e.currentTarget.email.value.trim();
-      //   const keylInput = e.currentTarget.text.value.trim();
-      //   if (emailInput === '' || keylInput === '') {
-      //     alert("Fill in the field!");
-      //   } else {
-      //     console.log("Email:", emailInput);
-      //     console.log("Key:", keylInput);
-      
-      //     toggleModalClose();
-      //     alert("Registration was successful");
-      //   }
-      // });
-        })();
+    })();
   
   
   };

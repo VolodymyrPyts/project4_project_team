@@ -155,12 +155,12 @@ formBackBtn.addEventListener('click', () => {
 
 Notiflix.Notify.init({
     width: '280px',
-    position: 'right-top',
+    position: 'center-top',
     distance: '10px',
     opacity: 1,
     borderRadius: '5px',
     rtl: false,
-    timeout: 3000,
+    timeout: 1000,
     messageMaxLength: 110,
     backOverlay: false,
     backOverlayColor: 'rgba(0,0,0,0.5)',
